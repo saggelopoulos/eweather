@@ -1,2 +1,0 @@
-# eweather
-java eweather  application
