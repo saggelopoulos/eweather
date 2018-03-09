@@ -6,12 +6,14 @@
 package org.eap.pli24.eweather.view;
 
 import javax.swing.JPanel;
+import org.eap.pli24.eweather.Eweather;
 
 /**
  *
  * @author aggelopoulos
  */
-public class Central extends javax.swing.JPanel {
+public class Central extends javax.swing.JPanel 
+{
 
     
     private int currentIndex=0;
@@ -20,17 +22,19 @@ public class Central extends javax.swing.JPanel {
     
     private ForecastWeather forecastWeather;
     
-    
+    private Eweather eweather;
     /**
      * Creates new form Main
      */
-    public Central() {
+    public Central(Eweather eweather) 
+    {
+        this.eweather = eweather;
         initComponents();
-        actualWeather =new ActualWeather();
-        actualWeather.setBounds(1, 1, 600, 500);
+        //actualWeather =new ActualWeather();
+       // actualWeather.setBounds(1, 1, 600, 500);
             
-        forecastWeather = new ForecastWeather();
-        forecastWeather.setBounds(1, 1, 600, 500);
+        //forecastWeather = new ForecastWeather();
+        //forecastWeather.setBounds(1, 1, 600, 500);
         
         
     }
@@ -44,126 +48,94 @@ public class Central extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        mainPanel = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
-        jButton1.setText("jButton1");
+        setPreferredSize(new java.awt.Dimension(800, 600));
+
+        jButton1.setText("Ο Καιρός Τώρα ");
+        jButton1.setToolTipText("");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Πρόβλεψη Καιρού");
+        jButton2.setToolTipText("");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
 
-        mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton4.setText("Στατιστικά");
+        jButton4.setToolTipText("");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jButton3.setText("Έξοδος");
+        jButton3.setToolTipText("");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(146, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
+                .addGap(21, 21, 21)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(289, Short.MAX_VALUE))
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(297, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
         
-        if (currentIndex== 0)
-        {
-            actualWeather.setBounds(1, 1, 600, 500);
-            actualWeather.setVisible(true);
-            mainPanel.add(actualWeather);
-           mainPanel.revalidate();
-           mainPanel.repaint();
-            currentIndex =1;
-        }
-        else if (currentIndex== 1)
-        {
-                  //dont do anythink  
-        }
-        
-        else if (currentIndex== 2)
-        {
-            mainPanel.remove(forecastWeather);
-            actualWeather.setBounds(1, 1, 600, 500);
-            actualWeather.setVisible(true);
-            mainPanel.add(actualWeather);
-            mainPanel.revalidate();
-           mainPanel.repaint(); 
-            currentIndex =1;    
-        }
-        
-        
-        
-        
+        eweather.switchboard(1);
+   
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        
-        if (currentIndex== 0)
-        {
-            
-            forecastWeather.setBounds(1, 1, 600, 500);
-            forecastWeather.setVisible(true);
-            mainPanel.add(forecastWeather);
-            mainPanel.revalidate();
-            mainPanel.repaint();
-            currentIndex =2;
-        }
-        else if (currentIndex== 1)
-        {
-            mainPanel.remove(actualWeather); 
-            forecastWeather.setBounds(1, 1, 600, 500);
-            forecastWeather.setVisible(true);
-            mainPanel.add(forecastWeather);
-            mainPanel.revalidate();
-            mainPanel.repaint();
-           currentIndex =2;
-        }
-        
-        else if (currentIndex== 2)
-        {
-          //dont do anythink 
-        }
-         
+        eweather.switchboard(2);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        eweather.switchboard(3);
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        eweather.switchboard(4);
+    }//GEN-LAST:event_jButton3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    public javax.swing.JPanel mainPanel;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }
