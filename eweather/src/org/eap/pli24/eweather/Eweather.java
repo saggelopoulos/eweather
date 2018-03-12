@@ -10,11 +10,12 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.eap.pli24.eweather.controller.Controller;
-import org.eap.pli24.eweather.model.WeatherForecast;
+import org.eap.pli24.eweather.model.WeatherActual;
 import org.eap.pli24.eweather.view.ActualWeather;
 import org.eap.pli24.eweather.view.Central;
 import org.eap.pli24.eweather.view.ForecastWeather;
 import org.eap.pli24.eweather.view.Statistics;
+import org.eap.pli24.eweather.wservice.OpenWeatherService;
 
 /**
  *
@@ -43,9 +44,20 @@ public class Eweather
         return controller;
     }
     
+    public OpenWeatherService openWeatherService;
+    
+    
     public Eweather()
     {
         controller = new Controller();
+        openWeatherService = new OpenWeatherService();
+        
+        List<WeatherActual> lt= openWeatherService.getActualWeather(controller.getCityList());
+        controller.deleteWeatherActualAll();
+        controller.insertWeatherActual(lt);
+            
+        
+        
     }
     
     
