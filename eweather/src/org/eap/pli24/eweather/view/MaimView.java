@@ -12,21 +12,21 @@ import org.eap.pli24.eweather.Eweather;
  *
  * @author aggelopoulos
  */
-public class Central extends javax.swing.JPanel 
+public class MaimView extends javax.swing.JPanel 
 {
 
     
     private int currentIndex=0;
     
-    private ActualWeather actualWeather;
+    private WeatherActualView actualWeather;
     
-    private ForecastWeather forecastWeather;
+    private WeatherForecastView forecastWeather;
     
     private Eweather eweather;
     /**
      * Creates new form Main
      */
-    public Central(Eweather eweather) 
+    public MaimView(Eweather eweather) 
     {
         this.eweather = eweather;
         initComponents();

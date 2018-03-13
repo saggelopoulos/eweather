@@ -21,14 +21,14 @@ import org.eclipse.persistence.internal.helper.Helper;
  *
  * @author aggelopoulos
  */
-public class ForecastWeather extends javax.swing.JPanel {
+public class WeatherForecastView extends javax.swing.JPanel {
     private List<City> cities;
     private Eweather eweather;    
     private SimpleDateFormat dateFormat;
      /**
      * Creates new form ForecastWeather
      */
-    public ForecastWeather(Eweather eweather) {
+    public WeatherForecastView(Eweather eweather) {
         
         this.eweather = eweather;
         dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");

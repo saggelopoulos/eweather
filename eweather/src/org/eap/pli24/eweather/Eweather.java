@@ -11,10 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.eap.pli24.eweather.controller.Controller;
-import org.eap.pli24.eweather.view.ActualWeather;
-import org.eap.pli24.eweather.view.Central;
-import org.eap.pli24.eweather.view.ForecastWeather;
-import org.eap.pli24.eweather.view.Statistics;
+import org.eap.pli24.eweather.view.WeatherActualView;
+import org.eap.pli24.eweather.view.MaimView;
+import org.eap.pli24.eweather.view.WeatherForecastView;
+import org.eap.pli24.eweather.view.WeatherStatisticsView;
 
 /**
  *
@@ -26,22 +26,22 @@ public class Eweather
 	/**
 	 * 
 	 */
-	private static Central central;
+	private static MaimView central;
 
 	/**
 	 * 
 	 */
-	private static ActualWeather actualWeather;
+	private static WeatherActualView actualWeather;
 
 	/**
 	 * 
 	 */
-	private static ForecastWeather forecastWeather;
+	private static WeatherForecastView forecastWeather;
 
 	/**
 	 * 
 	 */
-	private static Statistics statistic;
+	private static WeatherStatisticsView statistic;
 
 	/**
 	 * 
@@ -83,10 +83,10 @@ public class Eweather
 	public static void main(String[] args)
 	{
 		instance = new Eweather();
-		central = new Central(instance);
-		actualWeather = new ActualWeather(instance);
-		forecastWeather = new ForecastWeather(instance);
-		statistic = new Statistics(instance);
+		central = new MaimView(instance);
+		actualWeather = new WeatherActualView(instance);
+		forecastWeather = new WeatherForecastView(instance);
+		statistic = new WeatherStatisticsView(instance);
 
 		// List<WeatherForecast> minMaxTemprature = controller.getMinMaxTemprature();
 

@@ -15,7 +15,7 @@ import org.eap.pli24.eweather.model.City;
  *
  * @author aggelopoulos
  */
-public class Statistics extends javax.swing.JPanel {
+public class WeatherStatisticsView extends javax.swing.JPanel {
 
     private List<City> cities;
     
@@ -23,7 +23,7 @@ public class Statistics extends javax.swing.JPanel {
     /**
      * Creates new form Statistics
      */
-    public Statistics(Eweather eweather) 
+    public WeatherStatisticsView(Eweather eweather) 
     {
         this.eweather = eweather; 
         initComponents();

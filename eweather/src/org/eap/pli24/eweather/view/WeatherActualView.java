@@ -20,7 +20,7 @@ import org.eap.pli24.eweather.model.WeatherActual;
  *
  * @author aggelopoulos
  */
-public class ActualWeather extends javax.swing.JPanel {
+public class WeatherActualView extends javax.swing.JPanel {
 
     
     private List<City> cities;
@@ -29,7 +29,7 @@ public class ActualWeather extends javax.swing.JPanel {
     /**
      * Creates new form ActualWeather
      */
-    public ActualWeather(Eweather eweather)  
+    public WeatherActualView(Eweather eweather)  
     {
         this.eweather = eweather;
         initComponents();
@@ -57,8 +57,7 @@ public class ActualWeather extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -69,10 +68,8 @@ public class ActualWeather extends javax.swing.JPanel {
         weatherTableUI = new javax.swing.JTable();
 
         jButton1.setText("Ο Καιρός Τώρα");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
@@ -81,24 +78,19 @@ public class ActualWeather extends javax.swing.JPanel {
 
         jButton3.setText("Επιστροφή");
         jButton3.setToolTipText("");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
             }
         });
 
-        cityListUI.setModel(new javax.swing.AbstractListModel<String>()
-        {
+        cityListUI.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        cityListUI.addListSelectionListener(new javax.swing.event.ListSelectionListener()
-        {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
-            {
+        cityListUI.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 cityListUIValueChanged(evt);
             }
         });
@@ -106,27 +98,22 @@ public class ActualWeather extends javax.swing.JPanel {
 
         weatherTableUI.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         weatherTableUI.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "Πόλη", "Καιρός", "Θερμοκρασία", "Ανεμος", "Σύνεφα"
             }
-        )
-        {
-            Class[] types = new Class []
-            {
+        ) {
+            Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
-            public Class getColumnClass(int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
