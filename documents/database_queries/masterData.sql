@@ -4,7 +4,7 @@ INSERT into CITY (ID ,NAME) values (264371 , 'Αθήνα' );
 INSERT into CITY (ID ,NAME) values (734077 , 'Θεσσαλονίκη');
 INSERT into CITY (ID ,NAME) values (8133690 , 'Πάτρα');
 INSERT into CITY (ID ,NAME) values (8133786 , 'Λάρισα');
-INSERT into CITY (ID ,NAME) values (261743 , 'Ηράκλειο');
+INSERT into CITY (ID ,NAME) values (261745 , 'Ηράκλειο');
 
 --Contitions
 

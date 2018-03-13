@@ -19,11 +19,11 @@ create table Weather_Actual
 (
     City_ID int not null ,
     Condition_ID int not null ,
-    Temprature decimal(28, 8) ,
-    Clounds decimal (28,8),
-    Wind_Speed  decimal(28,8),
-    Rain decimal(28,8),
-    Snow decimal(28,8),
+    Temprature decimal(28, 2) ,
+    Clounds decimal (28,2),
+    Wind_Speed  decimal(28,2),
+    Rain decimal(28,2),
+    Snow decimal(28,2),
     Primary key (City_ID)
 );
 
@@ -33,11 +33,11 @@ create table Weather_Forecast
     DateTime timestamp,
     City_ID int not null ,
     Condition_ID int not null ,
-    Temprature decimal(28, 8) ,
-    Clounds decimal (28,8),
-    Wind_Speed  decimal(28,8),
-    Rain decimal(28,8),
-    Snow decimal(28,8),
+    Temprature decimal(28, 2) ,
+    Clounds decimal (28,2),
+    Wind_Speed  decimal(28,2),
+    Rain decimal(28,2),
+    Snow decimal(28,2),
     Primary key (DateTime, City_ID)
 
 
