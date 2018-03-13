@@ -35,10 +35,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "WeatherForecast.findByRain", query = "SELECT w FROM WeatherForecast w WHERE w.rain = :rain")
     , @NamedQuery(name = "WeatherForecast.findBySnow", query = "SELECT w FROM WeatherForecast w WHERE w.snow = :snow")
         // SA:manual added 
-    
-       , @NamedQuery(name = "WeatherForecast.findByPkey", query = "SELECT w FROM WeatherForecast w WHERE w.weatherForecastPK.datetime = :datetime and w.weatherForecastPK.cityId = :cityId")
-
-        , @NamedQuery(name = "WeatherForecast.findMinMax", query = "SELECT w.city, MAX(w.temprature), MIN(w.temprature) FROM WeatherForecast w GROUP BY w.city" )
+    , @NamedQuery(name = "WeatherForecast.findDateRange", query = "SELECT w FROM WeatherForecast w WHERE w.weatherForecastPK.datetime BETWEEN :startDate AND :endDate  and w.weatherForecastPK.cityId = :cityId")
+    , @NamedQuery(name = "WeatherForecast.findByPkey", query = "SELECT w FROM WeatherForecast w WHERE w.weatherForecastPK.datetime = :datetime and w.weatherForecastPK.cityId = :cityId")
+    , @NamedQuery(name = "WeatherForecast.findByDateList", query = "SELECT w FROM WeatherForecast w WHERE w.weatherForecastPK.datetime in :datetimes and w.weatherForecastPK.cityId = :cityId")
+    , @NamedQuery(name = "WeatherForecast.findMinMax", query = "SELECT w.city, MAX(w.temprature), MIN(w.temprature) FROM WeatherForecast w GROUP BY w.city" )
 })
 public class WeatherForecast implements Serializable {
 

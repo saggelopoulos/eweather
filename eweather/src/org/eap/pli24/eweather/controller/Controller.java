@@ -5,6 +5,7 @@
  */
 package org.eap.pli24.eweather.controller;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -122,6 +123,11 @@ public class Controller
         List result = qWa.getResultList(); 
         return result;
     }
+    
+    
+    
+    
+    
     /**
      * 
      */
@@ -164,13 +170,49 @@ public class Controller
             Query qw = entityManager.createNamedQuery("WeatherForecast.findByPkey");
             qw.setParameter("datetime", wf.getWeatherForecastPK().getDatetime());
             qw.setParameter("cityId", wf.getWeatherForecastPK().getCityId());
-            if (qw.getSingleResult()==null)
+            
+            try
+            {
+                Object rsl = qw.getSingleResult();
+                if (rsl == null)
+                {
+                    entityManager.persist(wf);    
+                }
+            }
+            catch (Exception e)
             {
                 entityManager.persist(wf);
             }
+          
         }
         entityManager.getTransaction().commit();   
     }
+    
+    public List<WeatherForecast> getWeatherForecastByDate(Date startDate, Date endDate , City city )
+    {
+        Query qw = entityManager.createNamedQuery("WeatherForecast.findDateRange");
+        qw.setParameter("startDate",startDate);
+        qw.setParameter("endDate",endDate);
+        qw.setParameter("cityId", city.getId());
+        List result = qw.getResultList(); 
+        return result;
+    }
+    
+    public List<WeatherForecast> getWeatherForecastByDateList(List<Date> dates , City city )
+    {
+        for (Date dt: dates)
+        {
+            System.out.println(dt);
+        }
+        
+        
+        Query qw = entityManager.createNamedQuery("WeatherForecast.findByDateList");
+        qw.setParameter("datetimes",dates);
+        qw.setParameter("cityId", city.getId());
+        List result = qw.getResultList(); 
+        return result;
+    }
+    
     /**
      * @return
      */

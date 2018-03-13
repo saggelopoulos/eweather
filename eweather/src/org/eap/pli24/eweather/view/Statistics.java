@@ -5,8 +5,11 @@
  */
 package org.eap.pli24.eweather.view;
 
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import org.eap.pli24.eweather.Eweather;
+import org.eap.pli24.eweather.model.City;
 
 /**
  *
@@ -14,6 +17,7 @@ import org.eap.pli24.eweather.Eweather;
  */
 public class Statistics extends javax.swing.JPanel {
 
+    private List<City> cities;
     
     private Eweather eweather;
     /**
@@ -23,11 +27,25 @@ public class Statistics extends javax.swing.JPanel {
     {
         this.eweather = eweather; 
         initComponents();
+        showCity();
         setJtable(0);
         
       
     }
-
+    private void showCity()
+    {
+        cities=  eweather.getController().getCityList();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        model.addElement("Επιλογή");
+        for (City ct : cities)
+        {
+            model.addElement(ct.getName());
+        }
+        CityListUI.setModel(model); 
+    }
+    
+    
+    
      private void setJtable(int mode )
      {
          DefaultTableModel model; 
@@ -61,7 +79,7 @@ public class Statistics extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CityListUI = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -94,7 +112,7 @@ public class Statistics extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CityListUI.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Πόλη");
         jLabel1.setToolTipText("");
@@ -129,7 +147,7 @@ public class Statistics extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CityListUI, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -138,7 +156,7 @@ public class Statistics extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CityListUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,10 +187,10 @@ public class Statistics extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CityListUI;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
