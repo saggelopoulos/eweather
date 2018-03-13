@@ -14,32 +14,71 @@ import org.eap.pli24.eweather.model.City;
 import org.eap.pli24.eweather.model.Condition;
 import org.eap.pli24.eweather.model.WeatherActual;
 import org.eap.pli24.eweather.model.WeatherForecast;
+import org.eap.pli24.eweather.wservice.OpenWeatherService;
 
 /**
+ * 
  *
- * @author aggelopoulos
  */
 public class Controller 
 {
     
-    EntityManagerFactory  entityManagerFactory;
-    EntityManager entityManager ;
+    /**
+     *  
+     */
+    private EntityManagerFactory  entityManagerFactory;
+    
+    /**
+     * 
+     */
+    private EntityManager entityManager ;
     
     
+    /**
+     * 
+     */
+    private OpenWeatherService openWeatherService;
+    
+    /**
+     * Class Constructor
+     */
     public Controller()
     {
         entityManagerFactory =Persistence.createEntityManagerFactory("eweatherPU");        
         entityManager =entityManagerFactory.createEntityManager();
+        openWeatherService = new OpenWeatherService();
+    }
+    /**
+     * 
+     */
+    public void updateActualData()
+    {
+    	 List<WeatherActual> lt= openWeatherService.getActualWeatherData(getCityList());
+         deleteWeatherActualAll();
+         insertWeatherActual(lt);
+    }
+    
+    public void updateForecastData()
+    {
+    	List<WeatherForecast> weatherForecasts = openWeatherService.getForecastWeatherData(getCityList());
+        insertWeatherForecast(weatherForecasts);  
     }
         
-        
+    /**
+     * 
+     * @return
+     */
     public List<City> getCityList()
     {
         Query qWa = entityManager.createNamedQuery("City.findAll");
-        List result = qWa.getResultList();
+        List<City> result = qWa.getResultList();
         return result;
     }
     
+    /**
+     * @param cityID
+     * @return
+     */
     public City getCity(int cityID)
     {
         Query qWa = entityManager.createNamedQuery("City.findById");
@@ -48,6 +87,11 @@ public class Controller
         return rsl;
     }
     
+    
+    /**
+     * @param conditionID
+     * @return
+     */
     public Condition getCondition(int conditionID)
     {
         Query qWa = entityManager.createNamedQuery("Condition.findById");
@@ -55,12 +99,10 @@ public class Controller
         Condition condition = (Condition)qWa.getSingleResult();
         return condition;
     }
-    
-    
-    
-    
-    
-    
+
+    /**
+     * @return
+     */
     public List<WeatherActual> getWeatherActualAll()
     {
         Query qWa = entityManager.createNamedQuery("WeatherActual.findAll");
@@ -69,6 +111,10 @@ public class Controller
     }
     
     
+    /**
+     * @param cityParameter
+     * @return
+     */
     public List<WeatherActual> getWeatherActualByCity(List cityParameter)
     {
         Query qWa = entityManager.createNamedQuery("WeatherActual.findByCityList");
@@ -76,10 +122,11 @@ public class Controller
         List result = qWa.getResultList(); 
         return result;
     }
-    
+    /**
+     * 
+     */
     public void deleteWeatherActualAll()
     {
-          
         Query qWa = entityManager.createNamedQuery("WeatherActual.findAll");
         List <WeatherActual> result = qWa.getResultList(); 
         entityManager.getTransaction().begin();
@@ -90,21 +137,25 @@ public class Controller
         entityManager.getTransaction().commit();
     }
     
+    /**
+     * @param dt
+     */
     public void insertWeatherActual (List<WeatherActual> dt)
     {
         entityManager.getTransaction().begin();
         for (WeatherActual wa : dt)
         {
-            
             wa.setCity(getCity(wa.getCityId()));
             wa.setConditionId(getCondition(wa.getConditionId().getId()));
             
             entityManager.persist(wa);
         }
         entityManager.getTransaction().commit();
-        
     }
     
+    /**
+     * @param weatherForecasts
+     */
     public void insertWeatherForecast(List<WeatherForecast> weatherForecasts)
     {
         entityManager.getTransaction().begin();
@@ -115,16 +166,14 @@ public class Controller
             qw.setParameter("cityId", wf.getWeatherForecastPK().getCityId());
             if (qw.getSingleResult()==null)
             {
-                //wf.setCity(getCity(wf.getCity().getId()Id()));
-                //wf.setConditionId(getCondition(wf.getConditionId().getId()));
-            
                 entityManager.persist(wf);
             }
         }
-        entityManager.getTransaction().commit();
-        
+        entityManager.getTransaction().commit();   
     }
-    
+    /**
+     * @return
+     */
     public List<WeatherForecast> getMinMaxTemprature()
     {
          Query qWa = entityManager.createNamedQuery("WeatherForecast.findMinMax");
