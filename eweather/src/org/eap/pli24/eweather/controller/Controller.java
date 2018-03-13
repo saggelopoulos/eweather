@@ -105,7 +105,25 @@ public class Controller
         
     }
     
-    
+    public void insertWeatherForecast(List<WeatherForecast> weatherForecasts)
+    {
+        entityManager.getTransaction().begin();
+        for (WeatherForecast wf : weatherForecasts)
+        {
+            Query qw = entityManager.createNamedQuery("WeatherForecast.findByPkey");
+            qw.setParameter("datetime", wf.getWeatherForecastPK().getDatetime());
+            qw.setParameter("cityId", wf.getWeatherForecastPK().getCityId());
+            if (qw.getSingleResult()==null)
+            {
+                //wf.setCity(getCity(wf.getCity().getId()Id()));
+                //wf.setConditionId(getCondition(wf.getConditionId().getId()));
+            
+                entityManager.persist(wf);
+            }
+        }
+        entityManager.getTransaction().commit();
+        
+    }
     
     public List<WeatherForecast> getMinMaxTemprature()
     {

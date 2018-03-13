@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.eap.pli24.eweather.controller.Controller;
 import org.eap.pli24.eweather.model.WeatherActual;
+import org.eap.pli24.eweather.model.WeatherForecast;
 import org.eap.pli24.eweather.view.ActualWeather;
 import org.eap.pli24.eweather.view.Central;
 import org.eap.pli24.eweather.view.ForecastWeather;
@@ -56,7 +57,9 @@ public class Eweather
         controller.deleteWeatherActualAll();
         controller.insertWeatherActual(lt);
             
-        
+        List<WeatherForecast> weatherForecasts = openWeatherService.getForecastWeather(controller.getCityList());
+        controller.insertWeatherForecast(weatherForecasts);
+        System.out.println( weatherForecasts.size());
         
     }
     
