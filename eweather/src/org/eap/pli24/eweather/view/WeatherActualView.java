@@ -50,6 +50,48 @@ public class WeatherActualView extends javax.swing.JPanel {
         cityListUI.setModel(model); 
     }
         
+    private void ShowWeatherData()
+    {
+         if (cityListUI.getSelectedIndices().length ==0)
+        {
+           eweather.showdialog("Δεν εχει επιλεγεί καμια πολη", "Πρόβλημα");
+           return ;
+        }
+        
+        List<Integer> selectCityID  = new ArrayList<>();
+        int i=0;        
+        for (int idx : cityListUI.getSelectedIndices())
+        {
+            City ct = cities.get(idx);
+            selectCityID.add(ct.getId());
+            i++;
+            System.out.println(ct.getId());
+        }
+    
+        List<WeatherActual> weatherActualsList =eweather.getController().getWeatherActualByCity(selectCityID);
+       
+        int inx=0 ;
+        for( i=0 ; i<5 ; i++)
+        {
+            weatherTableUI.getModel().setValueAt("", i, 0);
+            weatherTableUI.getModel().setValueAt("", i, 1);
+            weatherTableUI.getModel().setValueAt("", i, 2);
+            weatherTableUI.getModel().setValueAt("", i, 3);
+            weatherTableUI.getModel().setValueAt("", i, 4);
+        }
+      
+        for (WeatherActual wa : weatherActualsList)
+        {
+              
+            weatherTableUI.getModel().setValueAt(wa.getCity().getName(), inx, 0);
+            weatherTableUI.getModel().setValueAt(wa.getConditionId(), inx, 1);
+            weatherTableUI.getModel().setValueAt(wa.getTemprature(), inx, 2);
+            weatherTableUI.getModel().setValueAt(wa.getWindSpeed(), inx, 3);    
+            weatherTableUI.getModel().setValueAt(wa.getClounds(), inx, 4);    
+            inx++;
+        }
+    }
+    
     
     
     /**
@@ -75,6 +117,11 @@ public class WeatherActualView extends javax.swing.JPanel {
         });
 
         jButton2.setText("Ανανέωση");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Επιστροφή");
         jButton3.setToolTipText("");
@@ -165,44 +212,7 @@ public class WeatherActualView extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
        
         
-        if (cityListUI.getSelectedIndices().length ==0)
-        {
-           eweather.showdialog("Δεν εχει επιλεγεί καμια πολη", "Πρόβλημα");
-           return ;
-        }
-        
-        List<Integer> selectCityID  = new ArrayList<>();
-        int i=0;        
-        for (int idx : cityListUI.getSelectedIndices())
-        {
-            City ct = cities.get(idx);
-            selectCityID.add(ct.getId());
-            i++;
-            System.out.println(ct.getId());
-        }
-    
-        List<WeatherActual> weatherActualsList =eweather.getController().getWeatherActualByCity(selectCityID);
-       
-        int inx=0 ;
-        for( i=0 ; i<5 ; i++)
-        {
-            weatherTableUI.getModel().setValueAt("", i, 0);
-            weatherTableUI.getModel().setValueAt("", i, 1);
-            weatherTableUI.getModel().setValueAt("", i, 2);
-            weatherTableUI.getModel().setValueAt("", i, 3);
-            weatherTableUI.getModel().setValueAt("", i, 4);
-        }
-      
-        for (WeatherActual wa : weatherActualsList)
-        {
-              
-            weatherTableUI.getModel().setValueAt(wa.getCity().getName(), inx, 0);
-            weatherTableUI.getModel().setValueAt(wa.getConditionId(), inx, 1);
-            weatherTableUI.getModel().setValueAt(wa.getTemprature(), inx, 2);
-            weatherTableUI.getModel().setValueAt(wa.getWindSpeed(), inx, 3);    
-            weatherTableUI.getModel().setValueAt(wa.getClounds(), inx, 4);    
-            inx++;
-        }
+        ShowWeatherData();
   
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -218,6 +228,11 @@ public class WeatherActualView extends javax.swing.JPanel {
        
         
     }//GEN-LAST:event_cityListUIValueChanged
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        eweather.getController().updateActualData();
+        ShowWeatherData();
+    }//GEN-LAST:event_jButton2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

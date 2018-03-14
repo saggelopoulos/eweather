@@ -34,7 +34,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
         dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         initComponents();
         showCity();
-        setJtable();
+        setJtable(0);
     }
     private void showCity()
     {
@@ -47,18 +47,30 @@ public class WeatherForecastView extends javax.swing.JPanel {
         }
         CityListUI.setModel(model); 
     }
-    private void setJtable()
+    private void setJtable(int mode)
     {
          DefaultTableModel model; 
+         int numRows=0;
+         if (mode==0)
+         {
+             numRows = 8;
+         }
+         else
+         {
+             numRows = 6;
+         }
          String col[] = {"Ημερομηνία","Καιρός","Θερμοκρασία","Σύνεφα" ,"Άνεμος", "Βροχή", "Χιόνι" }; 
-             String rows[][] = new String[8][7];
-             for (int i = 0 ; i<8; i++)
+             String rows[][] = new String[numRows][7];
+             for (int i = 0 ; i<numRows-1; i++)
              {
                  for (int j =0 ; j<7 ; j++)
                  {
                      rows[i][j] ="";
                  } 
              }
+             
+             
+             
            model = new DefaultTableModel(rows, col);              
           jTable1.setModel(model);
           
@@ -67,6 +79,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
      {
         if ("Επιλογή" == CityListUI.getSelectedItem())
         {
+            eweather.showdialog("Παρακαλω Επιλέξτε Πόλη!", "Προσοχή");
             return ;
         }
         
@@ -102,6 +115,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
      {
         if ("Επιλογή" == CityListUI.getSelectedItem())
         {
+            eweather.showdialog("Παρακαλω Επιλέξτε Πόλη!", "Προσοχή");
             return ;
         }
         ArrayList<Date> dates= new ArrayList();
@@ -180,7 +194,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
         dates.add(calendar.getTime());
-        for (int i =0 ; i< 5 ;i++)
+        for (int i =1 ; i< 6 ;i++)
         {
             Date dt = new Date();
             calendar.setTime(dt);
@@ -346,7 +360,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        setJtable();
+        setJtable(0);
         ShowNext24Hours();
   
     }//GEN-LAST:event_jButton2MouseClicked
@@ -354,13 +368,13 @@ public class WeatherForecastView extends javax.swing.JPanel {
     * Five days
     */
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        setJtable();
+        setJtable(1);
         showNext5Days();
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        setJtable();
+        setJtable(0);
         eweather.getController().updateForecastData();
         ShowNext24Hours();
     }//GEN-LAST:event_jButton4MouseClicked
