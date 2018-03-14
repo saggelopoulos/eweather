@@ -8,19 +8,17 @@ package org.eap.pli24.eweather.view;
 import javax.swing.JPanel;
 import org.eap.pli24.eweather.Eweather;
 
+
 /**
- *
- * @author aggelopoulos
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  */
 public class MainView extends javax.swing.JPanel 
 {
 
     
-    private int currentIndex=0;
-    
-    private WeatherActualView actualWeather;
-    
-    private WeatherForecastView forecastWeather;
     
     private Eweather eweather;
     /**
@@ -30,13 +28,6 @@ public class MainView extends javax.swing.JPanel
     {
         this.eweather = eweather;
         initComponents();
-        //actualWeather =new ActualWeather();
-       // actualWeather.setBounds(1, 1, 600, 500);
-            
-        //forecastWeather = new ForecastWeather();
-        //forecastWeather.setBounds(1, 1, 600, 500);
-        
-        
     }
 
     /**

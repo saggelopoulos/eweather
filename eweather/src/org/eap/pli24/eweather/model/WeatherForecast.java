@@ -18,9 +18,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 /**
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  *
- * @author aggelopoulos
  */
 @Entity
 @Table(name = "WEATHER_FORECAST")
@@ -34,7 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "WeatherForecast.findByWindSpeed", query = "SELECT w FROM WeatherForecast w WHERE w.windSpeed = :windSpeed")
     , @NamedQuery(name = "WeatherForecast.findByRain", query = "SELECT w FROM WeatherForecast w WHERE w.rain = :rain")
     , @NamedQuery(name = "WeatherForecast.findBySnow", query = "SELECT w FROM WeatherForecast w WHERE w.snow = :snow")
-        // SA:manual added 
+    //Προσθήκη απο την ομαδα 
     , @NamedQuery(name = "WeatherForecast.findDateRange", query = "SELECT w FROM WeatherForecast w WHERE w.weatherForecastPK.datetime BETWEEN :startDate AND :endDate  and w.weatherForecastPK.cityId = :cityId")
     , @NamedQuery(name = "WeatherForecast.findByPkey", query = "SELECT w FROM WeatherForecast w WHERE w.weatherForecastPK.datetime = :datetime and w.weatherForecastPK.cityId = :cityId")
     , @NamedQuery(name = "WeatherForecast.findByDateList", query = "SELECT w FROM WeatherForecast w WHERE w.weatherForecastPK.datetime in :datetimes and w.weatherForecastPK.cityId = :cityId")

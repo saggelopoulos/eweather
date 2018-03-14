@@ -27,7 +27,7 @@ public class Eweather
 {
 
 	/**
-	 * Η φορμα με το βασικο menu της εφαρμογης
+	 * Η φόρμα με το βασικό menu της εφαρμογής
 	 */
 	private static MainView central;
 
@@ -37,7 +37,7 @@ public class Eweather
 	private static WeatherActualView actualWeather;
 
 	/**
-	 * Η φόρμα Ποβλεψης 5 ημερών 
+	 * Η φόρμα Πρόβλεψης 5 ημερών 
  	 */
 	private static WeatherForecastView forecastWeather;
 
@@ -47,18 +47,18 @@ public class Eweather
 	private static WeatherStatisticsView statistic;
 
 	/**
-	 * Προσβαση στης ρουτινες της κλασης. 
-	 * Η δημιουργια γινεται κατα την εκινηση της εφαρμογης 
+	 * Πρόσβαση στης ρουτίνες της κλάσης. 
+	 * Η δημιουργία γίνεται κατά την εκκίνηση της εφαρμογής 
 	 *  
 	 */
 	private static Eweather instance;
 
 	/**
-	 * Το κυριο Frame της εφαρμογής
+	 * Το κύριο Frame της εφαρμογής
 	 */
 	private static JFrame mainFrame;
 	/**
-	 * Προσβαση στις ρουτινες δεδομενων  
+	 * Πρόσβαση στις ρουτίνες δεδομένων  
 	 */
 	private Controller controller;
 	/**
@@ -72,14 +72,14 @@ public class Eweather
 
 	/**
 	 * Class Constructor
-	 * Η δημιουργια της Κλάσης γινεται απο την Main 
+	 * Η δημιουργία της Κλάσης γίνεται από την Main 
 	 * 
 	 */
 	public Eweather()
 	{
 		//Δημιουργια του controller 
 		controller = new Controller();
-		//Κληση μεσω του Controller για της ανανεωση των τρεχουσων καιρικων συνθηκών
+		//Κλήση μέσω του Controller για της ανανέωση των τρεχουσων καιρικων συνθηκών
 		controller.updateActualData();
 		//Κληση μεσω του Controller για της ανανεωση των  καιρικων συνθηκών για τις επομενες μερες
 		controller.updateForecastData();
@@ -96,11 +96,11 @@ public class Eweather
 		instance = new Eweather();
 		//Δημιουργία της κυριας φορμας 
 		central = new MainView(instance);
-		//Δημιουργια της φορμας για την απεικονιση των τρεχουσων καιρικών συνθηκων
+		//Δημιουργία της φόρμας για την απεικόνιση των τρεχουσών καιρικών συνθηκών
 		actualWeather = new WeatherActualView(instance);
-		//Δημιουργια της φορμας για την πρ'οβλεψη του καιρού
+		//Δημιουργία της φόρμας για την πρόβλεψη του καιρού
 		forecastWeather = new WeatherForecastView(instance);
-		//Δημιουργια της φορμας για την απεικονηση των στατιστικων
+		//Δημιουργία της φόρμας για την απεικόνιση των στατιστικών
 		statistic = new WeatherStatisticsView(instance);
 		
 		// 
@@ -110,18 +110,18 @@ public class Eweather
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setVisible(true);
 		
-		//Εμφανιση της κυριας φορμας με το menu
+		//Εμφάνιση της κύριας φόρμας με το menu
 		instance.switchboard(0);
 	}
 
 	/**
-	 * Η ρουτίνα ειναι υπευθυνη για την απεικονιση 
-	 * της σωστης φορμας βασης των επιλογων του χρηστη 
+	 * Η ρουτίνα είναι υπεύθυνη για την απεικόνιση 
+	 * της σωστής φόρμας βάση των επιλογών του χρήστη 
 	 * @param i : 	
-	 * 			0 = Κυρια φορμα 
-	 * 			1 = Ο καιρος τώρα 
-	 * 			2 = Προβλεψη καιρου
-	 * 			3 = Φορμα στατιστικων 
+	 * 			0 = Κύρια φόρμα 
+	 * 			1 = Ο καιρός τώρα 
+	 * 			2 = Πρόβλεψη καιρού
+	 * 			3 = Φόρμα στατιστικών 
 	 * 		
 	 */
 	public void switchboard(int i)
@@ -178,8 +178,8 @@ public class Eweather
 	}
 
 	/**
-	 * Η ρουτινα αναλαμβανει την εμφανιση μυνηματων διαλογου (dialog)
-	 * @param message :Το μυνημα που θα εμφανιστει
+	 * Η ρουτίνα αναλαμβάνει την εμφάνιση μηνυμάτων διαλόγου (dialog)
+	 * @param message :Το μήνυμα που θα εμφανιστεί
 	 * @param title   : Ο τίτλος 
 	 */
 	public void showdialog(String message, String title)

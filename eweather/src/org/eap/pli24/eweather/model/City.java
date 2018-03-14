@@ -23,9 +23,13 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+
 /**
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  *
- * @author aggelopoulos
  */
 @Entity
 @Table(name = "CITY")

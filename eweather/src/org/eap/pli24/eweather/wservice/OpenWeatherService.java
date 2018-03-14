@@ -27,19 +27,22 @@ import org.eap.pli24.eweather.model.WeatherForecast;
 import org.eap.pli24.eweather.model.WeatherForecastPK;
 
 /**
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  *
- * 
  */
 public class OpenWeatherService
 {
 
     /**
-     *  
+     *  Το API_KEY  
      */
     private static final String APPLICATION_KEY = "8cddfad4933646de13adebd70d2651a8";
 
     /**
-     * 
+     * Το service url 
      */
     private static final String OPEN_WEATHER_MAP_URL = "http://api.openweathermap.org/data/2.5/";
 
@@ -69,9 +72,9 @@ public class OpenWeatherService
 
     
     /**
-     * 
-     * @param city
-     * @return
+     * Κληση του service για τις τρεχουσες καιρικες συνθηκες και για μια λιστα απο πολεις 
+     * @param city : Λιστα απο αντικειμενα τυπου {@link org.eap.pli24.eweather.model.City}
+     * @return		:Λιστα απο αντικειμενα τυπου {@link org.eap.pli24.eweather.model.WeatherActual}
      */
     public List<WeatherActual> getActualWeatherData(List<City> city)
     {
@@ -151,6 +154,11 @@ public class OpenWeatherService
         return results;
     }
 
+    /**
+     * Κληση του service για τις καιρικες συνθηκες 5 ημερων και για μια λιστα απο πολεις 
+     * @param city  :Λιστα απο αντικειμενα τυπου {@link org.eap.pli24.eweather.model.City}
+     * @return:Λιστα απο αντικειμενα τυπου {@link org.eap.pli24.eweather.model.WeatherForecast}
+     */
     public List<WeatherForecast> getForecastWeatherData(List<City> city)
     {
         ArrayList<WeatherForecast> results = new ArrayList<>();

@@ -13,9 +13,13 @@ import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 /**
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  *
- * @author aggelopoulos
  */
 @Embeddable
 public class WeatherForecastPK implements Serializable {

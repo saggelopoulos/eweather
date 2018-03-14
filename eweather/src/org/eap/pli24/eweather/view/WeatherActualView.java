@@ -37,11 +37,11 @@ public class WeatherActualView extends javax.swing.JPanel {
         this.eweather = eweather;
         initComponents();
         showCity();
-        
-        
-       
-        
     }
+    
+    /**
+     *Εμφανιση των ονομάτων Πολεων 
+     */
     private void showCity()
     {
         cities=  eweather.getController().getCityList();
@@ -53,6 +53,9 @@ public class WeatherActualView extends javax.swing.JPanel {
         cityListUI.setModel(model); 
     }
         
+    /**
+     * Εμφανιση των αποτελεσμάτων στην οθόνη
+     */
     private void ShowWeatherData()
     {
          if (cityListUI.getSelectedIndices().length ==0)

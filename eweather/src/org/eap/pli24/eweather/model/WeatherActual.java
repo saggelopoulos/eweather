@@ -23,8 +23,11 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  *
- * @author aggelopoulos
  */
 @Entity
 @Table(name = "WEATHER_ACTUAL")
@@ -37,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "WeatherActual.findByWindSpeed", query = "SELECT w FROM WeatherActual w WHERE w.windSpeed = :windSpeed")
     , @NamedQuery(name = "WeatherActual.findByRain", query = "SELECT w FROM WeatherActual w WHERE w.rain = :rain")
     , @NamedQuery(name = "WeatherActual.findBySnow", query = "SELECT w FROM WeatherActual w WHERE w.snow = :snow")
-        //SA : manual added
+    //Προσθήκη απο την ομαδα    
     , @NamedQuery(name = "WeatherActual.findByCityList", query = "SELECT w FROM WeatherActual w WHERE w.cityId in :cityId")
     })
 public class WeatherActual implements Serializable {

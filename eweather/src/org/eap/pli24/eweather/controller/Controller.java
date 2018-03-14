@@ -7,10 +7,12 @@ package org.eap.pli24.eweather.controller;
 
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
 import org.eap.pli24.eweather.model.City;
 import org.eap.pli24.eweather.model.Condition;
 import org.eap.pli24.eweather.model.WeatherActual;
@@ -19,8 +21,10 @@ import org.eap.pli24.eweather.model.WeatherForecastStatistics;
 import org.eap.pli24.eweather.wservice.OpenWeatherService;
 
 /**
- * 
- *
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  */
 public class Controller 
 {
@@ -43,15 +47,17 @@ public class Controller
     
     /**
      * Class Constructor
+     * 
      */
     public Controller()
     {
         entityManagerFactory =Persistence.createEntityManagerFactory("eweatherPU");        
         entityManager =entityManagerFactory.createEntityManager();
+        // Πρόσβαση στα δεδομένα του openweather
         openWeatherService = new OpenWeatherService();
     }
     /**
-     * 
+     * Ενημέρωση της βάσης δεδομένων με τις τρέχουσες καιρικές συνθήκες  
      */
     public void updateActualData()
     {
@@ -60,6 +66,9 @@ public class Controller
          insertWeatherActual(lt);
     }
     
+    /**
+     * Ενημέρωση της βάσης δεδομένων με τις προβλέψεις για 5 ήμερες 
+     */
     public void updateForecastData()
     {
     	List<WeatherForecast> weatherForecasts = openWeatherService.getForecastWeatherData(getCityList());
@@ -67,8 +76,8 @@ public class Controller
     }
         
     /**
-     * 
-     * @return
+     * Διαβάζει τα στοιχεία των πόλεων 
+     * @return Μια λίστα με αντικείμενα τύπου {@link org.eap.pli24.eweather.model.City}
      */
     public List<City> getCityList()
     {
@@ -78,8 +87,9 @@ public class Controller
     }
     
     /**
-     * @param cityID
-     * @return
+     * Αναζητά και επιστρέφει την πόλη σύμφωνα με τον κωδικό της
+     * @param cityID : Ο κωδικός της πόλης  
+     * @return Ένα αντικείμενο τύπου {@link org.eap.pli24.eweather.model.City}
      */
     public City getCity(int cityID)
     {
@@ -91,8 +101,9 @@ public class Controller
     
     
     /**
-     * @param conditionID
-     * @return
+     * Αναζητά και επιστρέφει την συνθήκη σύμφωνα με τον κωδικό της 
+     * @param conditionID :Ο κωδικός της συνθήκης 
+     * @return  Ένα αντικείμενο τύπου {@link org.eap.pli24.eweather.model.Condition}
      */
     public Condition getCondition(int conditionID)
     {
@@ -103,7 +114,8 @@ public class Controller
     }
 
     /**
-     * @return
+     * Επιστρέφει όλες τις εγγραφές που είναι καταχωρημένες στο σύστημα 
+     * @return Μία λίστα με αντικείμενα τύπου {@link org.eap.pli24.eweather.model.WeatherActual}
      */
     public List<WeatherActual> getWeatherActualAll()
     {
@@ -114,6 +126,7 @@ public class Controller
     
     
     /**
+     * 
      * @param cityParameter
      * @return
      */
@@ -130,7 +143,8 @@ public class Controller
     
     
     /**
-     * 
+     * Διαγραφή όλων των εγγράφων που βρίσκονται καταχωρημένες στον πινακα
+     *  WEATHER_ACTUAL
      */
     public void deleteWeatherActualAll()
     {
@@ -145,7 +159,9 @@ public class Controller
     }
     
     /**
-     * @param dt
+     * Εισαγωγή όλων των εγγράφων της λίστας στον πινάκα WEATHER_ACTUAL
+     * 
+     * @param dt : Λίστα με αντικείμενα τύπου {@link org.eap.pli24.eweather.model.WeatherActual}
      */
     public void insertWeatherActual (List<WeatherActual> dt)
     {
@@ -161,7 +177,9 @@ public class Controller
     }
     
     /**
-     * @param weatherForecasts
+     * Εισαγωγή όλων των εγγραφών της λίστας στον πίνακα WEATHER_FORECAST
+     * 
+     * @param weatherForecasts :Λιστα με αντικειμενα τυπου {@link org.eap.pli24.eweather.model.WeatherForecast}
      */
     public void insertWeatherForecast(List<WeatherForecast> weatherForecasts)
     {
@@ -171,7 +189,6 @@ public class Controller
             Query qw = entityManager.createNamedQuery("WeatherForecast.findByPkey");
             qw.setParameter("datetime", wf.getWeatherForecastPK().getDatetime());
             qw.setParameter("cityId", wf.getWeatherForecastPK().getCityId());
-            
             try
             {
                 Object rsl = qw.getSingleResult();
@@ -189,6 +206,14 @@ public class Controller
         entityManager.getTransaction().commit();   
     }
     
+    /**
+     * Λήψη των δεδομένων από τον πίνακα WEATHER_FORECAST μεταξύ των ημερομηνιών startDate και endDate 
+     * Για την πολη city
+     * @param startDate : Από ημερομηνία 
+     * @param endDate	: Έως Ημερομηνία
+     * @param city		: Πόλη
+     * @return			: Λίστα με αντικείμενα τύπου {@link org.eap.pli24.eweather.model.WeatherForecast}
+     */
     public List<WeatherForecast> getWeatherForecastByDate(Date startDate, Date endDate , City city )
     {
         Query qw = entityManager.createNamedQuery("WeatherForecast.findDateRange");
@@ -199,14 +224,20 @@ public class Controller
         return result;
     }
     
+    
+    /**
+     * Λήψη των δεδομένων από τον πίνακα WEATHER_FORECAST για τις ημερομηνίες που βρίσκονται στην λίστα dates 
+     * Για την πόλη city 
+     * @param dates :Λίστα αντικειμένων τύπου {@link java.util.Date}
+     * @param city  :Αντικείμενο τύπου {@link org.eap.pli24.eweather.model.City} 
+     * @return 		:Λίστα με αντικείμενα  τύπου {@link org.eap.pli24.eweather.model.WeatherForecast}
+     */
     public List<WeatherForecast> getWeatherForecastByDateList(List<Date> dates , City city )
     {
         for (Date dt: dates)
         {
             System.out.println(dt);
         }
-        
-        
         Query qw = entityManager.createNamedQuery("WeatherForecast.findByDateList");
         qw.setParameter("datetimes",dates);
         qw.setParameter("cityId", city.getId());
@@ -224,6 +255,11 @@ public class Controller
          return result;
     }
     
+    /**
+     * Λήψη των δεδομένων από το View WEATHER_FORECAST_STATISTICS για κάποια συγκεκριμένη πόλη. 
+     * @param city 	:Αντικείμενο τύπου {@link org.eap.pli24.eweather.model.City}
+     * @return 		:Λίστα αντικειμένων τυπου {@link org.eap.pli24.eweather.model.WeatherForecastStatistics}
+     */
     public List<WeatherForecastStatistics>  getCityStatistics(City city)
     {
         Query qw = entityManager.createNamedQuery("WeatherForecastStatistics.findByCityId");
@@ -231,14 +267,14 @@ public class Controller
         List result = qw.getResultList(); 
         return result;
     }
-    
-    
+    /**
+     * Λήψη των δεδομένων από το View WEATHER_FORECAST_STATISTICS για ολες τις πολεις.
+     * @return	:Λίστα αντικειμένων τύπου {@link org.eap.pli24.eweather.model.WeatherForecastStatistics}
+     */
     public List<WeatherForecastStatistics>  getStatistics()
     {
         Query qw = entityManager.createNamedQuery("WeatherForecastStatistics.findAll");
         List result = qw.getResultList(); 
         return result;
     }
-    
-    
 }

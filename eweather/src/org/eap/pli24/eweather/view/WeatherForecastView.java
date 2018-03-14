@@ -17,9 +17,12 @@ import org.eap.pli24.eweather.model.City;
 import org.eap.pli24.eweather.model.WeatherForecast;
 import org.eclipse.persistence.internal.helper.Helper;
 
+
 /**
- *
- * @author aggelopoulos
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  */
 public class WeatherForecastView extends javax.swing.JPanel {
     private List<City> cities;
@@ -36,6 +39,10 @@ public class WeatherForecastView extends javax.swing.JPanel {
         showCity();
         setJtable(0);
     }
+    
+    /**
+     * Εμφανιση των ονομάτων Πολεων 
+     */
     private void showCity()
     {
         cities=  eweather.getController().getCityList();
@@ -47,6 +54,11 @@ public class WeatherForecastView extends javax.swing.JPanel {
         }
         CityListUI.setModel(model); 
     }
+    
+    /**
+     * Ρυθμιση του τροπου εμφανισης του πινακα (columns and rows)
+     * @param mode 
+     */
     private void setJtable(int mode)
     {
          DefaultTableModel model; 
@@ -75,7 +87,12 @@ public class WeatherForecastView extends javax.swing.JPanel {
           jTable1.setModel(model);
           
      }        
-       private void ShowNext24Hours()
+     
+    /**
+     * Εμφανιση αποτελεσματων για τις επομενες 24 ωρες και για 
+     * συγκεκριμενη πολη. 
+     */
+    private void ShowNext24Hours()
      {
         if ("Επιλογή" == CityListUI.getSelectedItem())
         {
@@ -110,7 +127,12 @@ public class WeatherForecastView extends javax.swing.JPanel {
                 }
             }
         }
-     }      
+     }
+    
+    /**
+     * Εμφανιση αποτελεσματων για τις επομενες 5 ημερες  
+     * και για συγκεκριμενη πολη. 
+     */
      public void showNext5Days()
      {
         if ("Επιλογή" == CityListUI.getSelectedItem())
