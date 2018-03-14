@@ -17,8 +17,11 @@ import org.eap.pli24.eweather.model.City;
 import org.eap.pli24.eweather.model.WeatherActual;
 
 /**
+ * @author Αγγελόπουλος Σπυρίδων
+ * @author Αναστασίου Αναστάσιος
+ * @author Αυγερινός Παναγιώτης
+ * @author Γκίκας Μιχαήλ
  *
- * @author aggelopoulos
  */
 public class WeatherActualView extends javax.swing.JPanel {
 
