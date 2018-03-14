@@ -12,7 +12,7 @@ import org.eap.pli24.eweather.Eweather;
  *
  * @author aggelopoulos
  */
-public class MaimView extends javax.swing.JPanel 
+public class MaiνView extends javax.swing.JPanel 
 {
 
     
@@ -26,7 +26,7 @@ public class MaimView extends javax.swing.JPanel
     /**
      * Creates new form Main
      */
-    public MaimView(Eweather eweather) 
+    public MaiνView(Eweather eweather) 
     {
         this.eweather = eweather;
         initComponents();

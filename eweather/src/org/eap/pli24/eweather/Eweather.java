@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 import org.eap.pli24.eweather.controller.Controller;
 import org.eap.pli24.eweather.view.WeatherActualView;
-import org.eap.pli24.eweather.view.MaimView;
+import org.eap.pli24.eweather.view.MaiνView;
 import org.eap.pli24.eweather.view.WeatherForecastView;
 import org.eap.pli24.eweather.view.WeatherStatisticsView;
 
@@ -26,7 +26,7 @@ public class Eweather
 	/**
 	 * 
 	 */
-	private static MaimView central;
+	private static MaiνView central;
 
 	/**
 	 * 
@@ -83,7 +83,7 @@ public class Eweather
 	public static void main(String[] args)
 	{
 		instance = new Eweather();
-		central = new MaimView(instance);
+		central = new MaiνView(instance);
 		actualWeather = new WeatherActualView(instance);
 		forecastWeather = new WeatherForecastView(instance);
 		statistic = new WeatherStatisticsView(instance);
