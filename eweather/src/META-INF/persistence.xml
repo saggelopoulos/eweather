@@ -6,6 +6,7 @@
     <class>org.eap.pli24.eweather.model.WeatherForecast</class>
     <class>org.eap.pli24.eweather.model.Condition</class>
     <class>org.eap.pli24.eweather.model.WeatherActual</class>
+    <class>org.eap.pli24.eweather.model.WeatherForecastStatistics</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/eweather_db"/>
       <property name="javax.persistence.jdbc.user" value="eap"/>

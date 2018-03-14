@@ -15,6 +15,7 @@ import org.eap.pli24.eweather.model.City;
 import org.eap.pli24.eweather.model.Condition;
 import org.eap.pli24.eweather.model.WeatherActual;
 import org.eap.pli24.eweather.model.WeatherForecast;
+import org.eap.pli24.eweather.model.WeatherForecastStatistics;
 import org.eap.pli24.eweather.wservice.OpenWeatherService;
 
 /**
@@ -222,4 +223,22 @@ public class Controller
          List <WeatherForecast> result = qWa.getResultList(); 
          return result;
     }
+    
+    public List<WeatherForecastStatistics>  getCityStatistics(City city)
+    {
+        Query qw = entityManager.createNamedQuery("WeatherForecastStatistics.findByCityId");
+        qw.setParameter("cityId", city.getId());
+        List result = qw.getResultList(); 
+        return result;
+    }
+    
+    
+    public List<WeatherForecastStatistics>  getStatistics()
+    {
+        Query qw = entityManager.createNamedQuery("WeatherForecastStatistics.findAll");
+        List result = qw.getResultList(); 
+        return result;
+    }
+    
+    
 }
