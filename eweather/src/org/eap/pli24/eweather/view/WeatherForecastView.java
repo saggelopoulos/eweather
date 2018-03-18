@@ -64,7 +64,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
          }
          else
          {
-             numRows = 6;
+             numRows = 5;
          }
          String col[] = {"Ημερομηνία","Καιρός","Θερμοκρασία","Σύνεφα" ,"Άνεμος", "Βροχή", "Χιόνι" }; 
              String rows[][] = new String[numRows][7];
@@ -211,7 +211,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
         dates.add(calendar.getTime());
-        for (int i =1 ; i< 6 ;i++)
+        for (int i =1 ; i< 5 ;i++)
         {
             Date dt = new Date();
             calendar.setTime(dt);
