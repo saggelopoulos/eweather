@@ -26,7 +26,7 @@
                       <Component id="jLabel1" min="-2" pref="129" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="CityListUI" min="-2" pref="188" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="309" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
