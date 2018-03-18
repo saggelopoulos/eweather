@@ -56,7 +56,7 @@ public class WeatherActualView extends javax.swing.JPanel {
     /**
      * Εμφανιση των αποτελεσμάτων στην οθόνη
      */
-    private void ShowWeatherData()
+    private void showWeatherData()
     {
          if (cityListUI.getSelectedIndices().length ==0)
         {
@@ -218,7 +218,7 @@ public class WeatherActualView extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
        
         
-        ShowWeatherData();
+        showWeatherData();
   
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -237,7 +237,7 @@ public class WeatherActualView extends javax.swing.JPanel {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         eweather.getController().updateActualData();
-        ShowWeatherData();
+        showWeatherData();
     }//GEN-LAST:event_jButton2MouseClicked
 
 
