@@ -45,6 +45,9 @@ public class OpenWeatherService{
 
     private static String UNIT = "metric";
 
+    private static String ICON_URL_PREFIX ="http://openweathermap.org/img/w/";
+    
+    private static String ICON_URL_SUFFIX =".png";
     /**
      *  Class Constructor
      */
@@ -92,6 +95,9 @@ public class OpenWeatherService{
                 JsonObject main = currentData.getJsonObject("main");
                 JsonNumber temprature = main.getJsonNumber("temp");
                 int contitionID = currentData.getJsonArray("weather").getJsonObject(0).getInt("id");
+                // το ονομα του εικονι0διού απο το Service
+                String icon =currentData.getJsonArray("weather").getJsonObject(0).getString("icon");
+                
                 JsonNumber clouds = currentData.getJsonObject("clouds").getJsonNumber("all");
                 JsonNumber windSpeed = currentData.getJsonObject("wind").getJsonNumber("speed");
                 BigDecimal rainActual = BigDecimal.ZERO;
@@ -109,6 +115,7 @@ public class OpenWeatherService{
                 WeatherActual weatherActual = new WeatherActual();
                 weatherActual.setCityId(id);
                 weatherActual.setConditionId(new Condition(contitionID));
+                weatherActual.setIcon(ICON_URL_PREFIX+ icon+ICON_URL_SUFFIX);
                 weatherActual.setTemprature(temprature.bigDecimalValue());
                 weatherActual.setWindSpeed(windSpeed.bigDecimalValue());
                 weatherActual.setClounds(clouds.bigDecimalValue());
@@ -158,6 +165,8 @@ public class OpenWeatherService{
                     JsonNumber temprature = main.getJsonNumber("temp");
 
                     int contitionID = currentData.getJsonArray("weather").getJsonObject(0).getInt("id");
+                      // το ονομα του εικονι0διού απο το Service
+                    String icon =currentData.getJsonArray("weather").getJsonObject(0).getString("icon");
                     JsonNumber clouds = currentData.getJsonObject("clouds").getJsonNumber("all");
                     JsonNumber windSpeed = currentData.getJsonObject("wind").getJsonNumber("speed");
 
@@ -174,11 +183,13 @@ public class OpenWeatherService{
                     JsonObject snow = currentData.getJsonObject("snow");
                     if (snow != null){
                         JsonNumber snow3h = snow.getJsonNumber("3h");
-                        snowActual = snow3h.bigDecimalValue();
+                        if (snow3h!=null)
+                            snowActual = snow3h.bigDecimalValue();
                     }
 
                     WeatherForecast weatherForecast = new WeatherForecast(new WeatherForecastPK(currentDate,ct.getId() ));
                     weatherForecast.setConditionId(new Condition(contitionID));
+                    weatherForecast.setIcon(ICON_URL_PREFIX+ icon+ICON_URL_SUFFIX); // icon 
                     weatherForecast.setTemprature(temprature.bigDecimalValue());
                     weatherForecast.setClounds(clouds.bigDecimalValue());
                     weatherForecast.setWindSpeed(windSpeed.bigDecimalValue());

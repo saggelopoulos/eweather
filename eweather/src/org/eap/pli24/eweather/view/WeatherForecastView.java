@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import org.eap.pli24.eweather.Eweather;
 import org.eap.pli24.eweather.model.City;
 import org.eap.pli24.eweather.model.WeatherForecast;
@@ -58,17 +59,19 @@ public class WeatherForecastView extends javax.swing.JPanel {
         if (mode==0) {
            numRows = 8;
         } else {
-           numRows = 5;
+           numRows = 6;
         }
-        String col[] = {"Ημερομηνία","Καιρός","Θερμοκρασία","Σύνεφα" ,"Άνεμος", "Βροχή", "Χιόνι" }; 
-        String rows[][] = new String[numRows][7];
+        String col[] = {"Ημερομηνία","Icon","Καιρός","Θερμοκρασία","Σύνεφα" ,"Άνεμος", "Βροχή", "Χιόνι" }; 
+        String rows[][] = new String[numRows][8];
         for (int i = 0 ; i<numRows-1; i++){
             for (int j =0 ; j<7 ; j++){
-                rows[i][j] ="";
+                rows[i][j] =null;
             } 
         }
         model = new DefaultTableModel(rows, col);              
         jTable1.setModel(model); 
+         TableColumn tc = jTable1.getColumnModel().getColumn(1);
+        tc.setCellRenderer(new ImageRenderer());
     }        
      
     /**
@@ -94,14 +97,15 @@ public class WeatherForecastView extends javax.swing.JPanel {
                 int i =0;
                 
                 for ( WeatherForecast wf  : results){
-                     jTable1.getModel().setValueAt(  dateFormat.format(wf.getWeatherForecastPK().getDatetime()) , i, 0);
-                     jTable1.getModel().setValueAt(wf.getConditionId() , i, 1);
-                     jTable1.getModel().setValueAt(wf.getTemprature() , i, 2);
-                     jTable1.getModel().setValueAt(wf.getClounds().toPlainString(), i, 3);
-                     jTable1.getModel().setValueAt(wf.getWindSpeed().toPlainString() , i, 4);
-                     jTable1.getModel().setValueAt(wf.getRain().toPlainString() , i, 5);
-                     jTable1.getModel().setValueAt(wf.getSnow().toPlainString(), i, 6);
-                     i++;
+                    jTable1.getModel().setValueAt(  dateFormat.format(wf.getWeatherForecastPK().getDatetime()) , i, 0);
+                    jTable1.getModel().setValueAt(wf.getIcon(), i, 1);
+                    jTable1.getModel().setValueAt(wf.getConditionId() , i, 2);
+                    jTable1.getModel().setValueAt(wf.getTemprature() , i, 3);
+                    jTable1.getModel().setValueAt(wf.getClounds().toPlainString(), i, 4);
+                    jTable1.getModel().setValueAt(wf.getWindSpeed().toPlainString() , i, 5);
+                    jTable1.getModel().setValueAt(wf.getRain().toPlainString() , i, 6);
+                    jTable1.getModel().setValueAt(wf.getSnow().toPlainString(), i, 7);
+                    i++;
                 }
             }
         }
@@ -170,7 +174,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
         dates.add(calendar.getTime());
-        for (int i =1 ; i< 5 ;i++){
+        for (int i =1 ; i< 6 ;i++){
             Date dt = new Date();
             calendar.setTime(dt);
             calendar.set(Calendar.DATE, calendar.get(Calendar.DATE)+ i);
@@ -178,26 +182,26 @@ public class WeatherForecastView extends javax.swing.JPanel {
             calendar.set(Calendar.MINUTE,0);
             calendar.set(Calendar.SECOND,0);
             calendar.set(Calendar.MILLISECOND,0);
-            
             dates.add(calendar.getTime());
         }
         
         City currentCity ; 
         for ( City ct :cities){
             if  (ct.getName() == CityListUI.getSelectedItem()){
-                 currentCity = ct;
-                 List<WeatherForecast> results = eweather.getController().getWeatherForecastByDateList(dates, currentCity);
+                currentCity = ct;
+                List<WeatherForecast> results = eweather.getController().getWeatherForecastByDateList(dates, currentCity);
                  
                 int i=0; 
                 for ( WeatherForecast wf  : results){
-                     jTable1.getModel().setValueAt(  dateFormat.format(wf.getWeatherForecastPK().getDatetime()) , i, 0);
-                     jTable1.getModel().setValueAt(wf.getConditionId() , i, 1);
-                     jTable1.getModel().setValueAt(wf.getTemprature() , i, 2);
-                     jTable1.getModel().setValueAt(wf.getClounds().toPlainString(), i, 3);
-                     jTable1.getModel().setValueAt(wf.getWindSpeed().toPlainString() , i, 4);
-                     jTable1.getModel().setValueAt(wf.getRain().toPlainString() , i, 5);
-                     jTable1.getModel().setValueAt(wf.getSnow().toPlainString(), i, 6);
-                     i++;
+                    jTable1.getModel().setValueAt(  dateFormat.format(wf.getWeatherForecastPK().getDatetime()) , i, 0);
+                    jTable1.getModel().setValueAt(wf.getIcon(), i, 1);
+                    jTable1.getModel().setValueAt(wf.getConditionId() , i, 1);
+                    jTable1.getModel().setValueAt(wf.getTemprature().intValue() + " °C" , i, 2);
+                    jTable1.getModel().setValueAt(wf.getClounds().toPlainString(), i, 3);
+                    jTable1.getModel().setValueAt(wf.getWindSpeed().toPlainString() + " km/h", i, 4);
+                    jTable1.getModel().setValueAt(wf.getRain().toPlainString() , i, 5);
+                    jTable1.getModel().setValueAt(wf.getSnow().toPlainString(), i, 6);
+                    i++;
                 }        
             }
         }
@@ -208,7 +212,8 @@ public class WeatherForecastView extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -223,16 +228,20 @@ public class WeatherForecastView extends javax.swing.JPanel {
 
         jButton1.setText("Επιστροφή");
         jButton1.setName("jButton1"); // NOI18N
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jButton1MouseClicked(evt);
             }
         });
 
         jButton2.setText("Προβλεψη Καιρού 1ης Ημέρας");
         jButton2.setName("jButton2"); // NOI18N
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jButton2MouseClicked(evt);
             }
         });
@@ -240,8 +249,10 @@ public class WeatherForecastView extends javax.swing.JPanel {
         jButton3.setText("Πρόβλεψη Καιρού 5 ημερών");
         jButton3.setToolTipText("");
         jButton3.setName("jButton3"); // NOI18N
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jButton3MouseClicked(evt);
             }
         });
@@ -249,8 +260,10 @@ public class WeatherForecastView extends javax.swing.JPanel {
         jButton4.setText("Ανανέωση Πρόβλεψης Καιρού");
         jButton4.setToolTipText("");
         jButton4.setName("jButton4"); // NOI18N
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jButton4MouseClicked(evt);
             }
         });
@@ -265,14 +278,17 @@ public class WeatherForecastView extends javax.swing.JPanel {
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
 
             }
         ));
         jTable1.setName("jTable1"); // NOI18N
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -286,7 +302,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
                         .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 129, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(CityListUI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 188, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 309, Short.MAX_VALUE))
+                        .add(0, 0, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(jButton2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)

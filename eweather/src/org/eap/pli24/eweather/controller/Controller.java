@@ -155,6 +155,10 @@ public class Controller{
                 if (rsl == null){
                     entityManager.persist(wf);    
                 }
+                else
+                {
+                    entityManager.merge(wf);
+                }
             }catch (Exception e){
                 entityManager.persist(wf);
             }
