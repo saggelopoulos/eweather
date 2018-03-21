@@ -1,6 +1,8 @@
 package org.eap.pli24.eweather;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -55,7 +57,7 @@ public class Eweather{
     private Controller controller;
    
     public Controller getController(){
-		return controller;
+	return controller;
     }
 
     /**
@@ -85,17 +87,20 @@ public class Eweather{
 	forecastWeather = new WeatherForecastView(instance);
 	//Δημιουργία της φόρμας για την απεικόνιση των στατιστικών
 	statistic = new WeatherStatisticsView(instance);
-	
-	mainFrame = new JFrame("weather ");
+        
+	mainFrame = new JFrame("Weather Forecast ");
 	mainFrame.setSize(800, 600);
 	mainFrame.setLayout(new BorderLayout());
 	mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	mainFrame.setVisible(true);
-		
+        mainFrame.setResizable(false);
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\org\\eap\\pli24\\eweather\\icon.png"));
+
 	//Εμφάνιση της κύριας φόρμας με το menu
 	instance.switchboard(0);
     }
-
+    
     /**
      * Η ρουτίνα είναι υπεύθυνη για την απεικόνιση 
      * της σωστής φόρμας βάση των επιλογών του χρήστη 
@@ -109,40 +114,28 @@ public class Eweather{
         if (i == 0){
             mainFrame.remove(actualWeather);
             mainFrame.remove(forecastWeather);
-            mainFrame.remove(statistic);
+            mainFrame.remove(statistic);          
             central.setBounds(1, 1, mainFrame.getWidth() - 20, mainFrame.getHeight() - 20);
             mainFrame.add(central, BorderLayout.CENTER);
             mainFrame.revalidate();
             mainFrame.repaint();
 	} else if (i == 1){
-            actualWeather.setBounds(1, 1, mainFrame.getWidth() - 20, mainFrame.getHeight() - 20);
-            mainFrame.remove(central);
-            mainFrame.add(actualWeather);
-            mainFrame.revalidate();
-            mainFrame.repaint();
+            callFrame(central, actualWeather);
 	} else if (i == 2){
-            forecastWeather.setBounds(1, 1, mainFrame.getWidth() - 20, mainFrame.getHeight() - 20);
-            mainFrame.remove(central);
-            mainFrame.add(forecastWeather);
-            mainFrame.revalidate();
-            mainFrame.repaint();
+            callFrame(central, forecastWeather);
         } else if (i == 3){
-            statistic.setBounds(1, 1, mainFrame.getWidth() - 20, mainFrame.getHeight() - 20);
-            mainFrame.remove(central);
-            mainFrame.add(statistic);
-            mainFrame.revalidate();
-            mainFrame.repaint();
+            callFrame(central, statistic);
 	} else if (i == 4){
             System.exit(0);
-	}else{
-            mainFrame.remove(actualWeather);
-            mainFrame.remove(forecastWeather);
-            mainFrame.remove(statistic);
-            central.setBounds(1, 1, mainFrame.getWidth() - 20, mainFrame.getHeight() - 20);
-            mainFrame.add(central, BorderLayout.CENTER);
-            mainFrame.revalidate();
-            mainFrame.repaint();
-        }
+	}
+    }
+    
+    private static void callFrame(Container  oldFrame, Container  newFrame){
+        newFrame.setBounds(1, 1, mainFrame.getWidth() - 20, mainFrame.getHeight() - 20);
+        mainFrame.remove(oldFrame);
+        mainFrame.add(newFrame);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 
     /**
