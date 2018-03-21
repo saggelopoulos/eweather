@@ -15,7 +15,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -40,10 +39,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "WeatherActual.findByCityList", query = "SELECT w FROM WeatherActual w WHERE w.cityId in :cityId")
     })
 public class WeatherActual implements Serializable {
-
-    @Size(max = 200)
-    @Column(name = "ICON")
-    private String icon;
 
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -187,15 +182,5 @@ public class WeatherActual implements Serializable {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.removePropertyChangeListener(listener);
-    }
-
-    public String getIcon()
-    {
-        return icon;
-    }
-
-    public void setIcon(String icon)
-    {
-        this.icon = icon;
     }
 }
