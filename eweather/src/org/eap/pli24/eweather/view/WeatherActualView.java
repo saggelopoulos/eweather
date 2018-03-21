@@ -73,19 +73,12 @@ public class WeatherActualView extends javax.swing.JPanel {
             weatherTableUI.getModel().setValueAt("", i, 5);
         }
       
-        for (WeatherActual wa : weatherActualsList)
-        {              
+        for (WeatherActual wa : weatherActualsList){              
             weatherTableUI.getModel().setValueAt(wa.getCity().getName(), inx, 0);
-
-            weatherTableUI.getModel().setValueAt(wa.getConditionId(), inx, 1);
-            weatherTableUI.getModel().setValueAt(wa.getTemprature().intValue() + " °C", inx, 2);
-            weatherTableUI.getModel().setValueAt(wa.getWindSpeed() + " km/h", inx, 3);    
-            weatherTableUI.getModel().setValueAt(wa.getClounds(), inx, 4);    
-
             weatherTableUI.getModel().setValueAt(wa.getIcon(), inx, 1);
             weatherTableUI.getModel().setValueAt(wa.getConditionId(), inx, 2);
-            weatherTableUI.getModel().setValueAt(wa.getTemprature(), inx, 3);
-            weatherTableUI.getModel().setValueAt(wa.getWindSpeed(), inx, 4);    
+            weatherTableUI.getModel().setValueAt(wa.getTemprature().intValue() + " °C", inx, 3);
+            weatherTableUI.getModel().setValueAt(wa.getWindSpeed() + " km/h", inx, 4);    
             weatherTableUI.getModel().setValueAt(wa.getClounds(), inx, 5);    
             inx++;
         }   
