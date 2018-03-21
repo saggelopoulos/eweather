@@ -13,14 +13,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 /**
  * @author Αγγελόπουλος Σπυρίδων
  * @author Αναστασίου Αναστάσιος
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
- *
  */
+
 @Entity
 @Table(name = "WEATHER_FORECAST")
 @XmlRootElement
@@ -146,7 +145,7 @@ public class WeatherForecast implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof WeatherForecast)) {
             return false;
         }
@@ -161,5 +160,4 @@ public class WeatherForecast implements Serializable {
     public String toString() {
         return "org.eap.pli24.eweather.model.WeatherForecast[ weatherForecastPK=" + weatherForecastPK + " ]";
     }
-    
 }

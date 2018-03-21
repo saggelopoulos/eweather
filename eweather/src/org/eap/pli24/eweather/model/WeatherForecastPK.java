@@ -8,14 +8,13 @@ import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 /**
  * @author Αγγελόπουλος Σπυρίδων
  * @author Αναστασίου Αναστάσιος
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
- *
  */
+
 @Embeddable
 public class WeatherForecastPK implements Serializable {
 
@@ -61,7 +60,7 @@ public class WeatherForecastPK implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        //Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof WeatherForecastPK)) {
             return false;
         }
@@ -79,5 +78,4 @@ public class WeatherForecastPK implements Serializable {
     public String toString() {
         return "org.eap.pli24.eweather.model.WeatherForecastPK[ datetime=" + datetime + ", cityId=" + cityId + " ]";
     }
-    
 }

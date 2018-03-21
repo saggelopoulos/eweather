@@ -22,8 +22,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Αναστασίου Αναστάσιος
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
- *
  */
+
 @Entity
 @Table(name = "WEATHER_ACTUAL")
 @XmlRootElement
@@ -183,5 +183,4 @@ public class WeatherActual implements Serializable {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.removePropertyChangeListener(listener);
     }
-    
 }

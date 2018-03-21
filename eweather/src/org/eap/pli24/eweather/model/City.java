@@ -18,13 +18,11 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
 /**
  * @author Αγγελόπουλος Σπυρίδων
  * @author Αναστασίου Αναστάσιος
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
- *
  */
 @Entity
 @Table(name = "CITY")
@@ -103,7 +101,7 @@ public class City implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        //Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof City)) {
             return false;
         }
@@ -126,5 +124,4 @@ public class City implements Serializable {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.removePropertyChangeListener(listener);
     }
-    
 }

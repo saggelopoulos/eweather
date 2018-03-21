@@ -13,6 +13,7 @@ import org.eap.pli24.eweather.model.WeatherForecastStatistics;
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
  */
+
 public class WeatherStatisticsView extends javax.swing.JPanel {
 
     private List<City> cities;
@@ -21,77 +22,59 @@ public class WeatherStatisticsView extends javax.swing.JPanel {
     /**
      * Creates new form Statistics
      */
-    public WeatherStatisticsView(Eweather eweather) 
-    {
+    public WeatherStatisticsView(Eweather eweather){
         this.eweather = eweather; 
         initComponents();
         showCity();
         setJtable(0);
-        
-      
     }
     
     /**
      * Εμφανιση των ονομάτων Πολεων 
      */
-    private void showCity()
-    {
+    private void showCity(){
         cities=  eweather.getController().getCityList();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         model.addElement("Επιλογή");
-        for (City ct : cities)
-        {
+        for (City ct : cities){
             model.addElement(ct.getName());
         }
         CityListUI.setModel(model); 
     }
     
-    
     /**
      * Ρυθμιση του τροπου εμφανισης του πινακα (columns and rows)
      * @param mode 
      */
-     private void setJtable(int mode )
-     {
-         DefaultTableModel model; 
-         if(mode ==0)
-         {
-             String col[] = {"Πόλη","Ελάχιστη","Μέγιστη"}; 
-             String data[][] = {{"",""}};
-             model = new DefaultTableModel(data, col);
-     
-         }
-         else
-         {
-             String col[] = {"Πόλη","Ελάχιστη","Μέγιστη", "Μέση"}; 
-             String data[][] = {{"","" ,""},{"","" ,""}, {"","" ,""},{"","" ,""},{"","" ,""} };
-             model = new DefaultTableModel(data, col);
-             
-         }
-         jTable1.setModel(model);
-          
-     }        
+    private void setJtable(int mode ){
+        DefaultTableModel model; 
+        if(mode ==0){
+            String col[] = {"Πόλη","Ελάχιστη","Μέγιστη"}; 
+            String data[][] = {{"",""}};
+            model = new DefaultTableModel(data, col);     
+        }else{
+            String col[] = {"Πόλη","Ελάχιστη","Μέγιστη", "Μέση"}; 
+            String data[][] = {{"","" ,""},{"","" ,""}, {"","" ,""},{"","" ,""},{"","" ,""} };
+            model = new DefaultTableModel(data, col);
+        }
+        jTable1.setModel(model);
+    }        
              
      /**
      * Εμφανιση στατιστικων για συγκεκριμενη πολη 
      */
-    private void showStatisticsForSelectedCity()
-     {
-        if ("Επιλογή" == CityListUI.getSelectedItem())
-        {
+    private void showStatisticsForSelectedCity(){
+        if ("Επιλογή" == CityListUI.getSelectedItem()){
             eweather.showdialog("Παρακαλω Επιλέξτε Πόλη!", "Προσοχή");
             return ;
         }
         City currentCity ; 
-        for ( City ct :cities)
-        {
-            if  (ct.getName() == CityListUI.getSelectedItem())
-            {
+        for ( City ct :cities){
+            if  (ct.getName() == CityListUI.getSelectedItem()){
                 currentCity = ct; 
                 List<WeatherForecastStatistics> wsl = eweather.getController().getCityStatistics(currentCity);
                 int i=0;
-                for ( WeatherForecastStatistics ws : wsl)
-                {
+                for ( WeatherForecastStatistics ws : wsl){
                     jTable1.getModel().setValueAt(ws.getName() , i,0);
                     jTable1.getModel().setValueAt( ws.getTempratureMin() , i, 1);
                     jTable1.getModel().setValueAt( ws.getTempratureMax(), i, 2);
@@ -99,23 +82,22 @@ public class WeatherStatisticsView extends javax.swing.JPanel {
                 }
             }
         }
-     }
+    }
+    
     /**
      * Εμφανιση στατιστικων για ολες τισ  πολεις 
      */
-     private void showStatistics()
-     {
+    private void showStatistics(){
         List<WeatherForecastStatistics> wsl = eweather.getController().getStatistics();
         int i=0;
-        for ( WeatherForecastStatistics ws : wsl)
-            {
-                jTable1.getModel().setValueAt(ws.getName() , i,0);
-                jTable1.getModel().setValueAt( ws.getTempratureMin() , i, 1);
-                jTable1.getModel().setValueAt( ws.getTempratureMax(), i, 2);
-                jTable1.getModel().setValueAt( ws.getTempratureAvg(), i, 3);
-                i++;
-            }
-     }
+        for ( WeatherForecastStatistics ws : wsl){
+            jTable1.getModel().setValueAt(ws.getName() , i,0);
+            jTable1.getModel().setValueAt( ws.getTempratureMin() , i, 1);
+            jTable1.getModel().setValueAt( ws.getTempratureMax(), i, 2);
+            jTable1.getModel().setValueAt( ws.getTempratureAvg(), i, 3);
+            i++;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
      */
@@ -233,7 +215,6 @@ public class WeatherStatisticsView extends javax.swing.JPanel {
         setJtable(1);
         showStatistics();
     }//GEN-LAST:event_jButton3MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CityListUI;

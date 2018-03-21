@@ -26,10 +26,8 @@ import org.eap.pli24.eweather.model.WeatherForecastPK;
  * @author Αναστασίου Αναστάσιος
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
- *
  */
-public class OpenWeatherService
-{
+public class OpenWeatherService{
 
     /**
      *  Το API_KEY  
@@ -41,52 +39,34 @@ public class OpenWeatherService
      */
     private static final String OPEN_WEATHER_MAP_URL = "http://api.openweathermap.org/data/2.5/";
 
-    /**
-     * 
-     */
     private static final String GROUP = "group";
 
-    /**
-     * 
-     */
     private static final String FORECAST = "forecast";
 
-    /**
-     * 
-     */
     private static String UNIT = "metric";
 
-    
     /**
      *  Class Constructor
      */
-    public OpenWeatherService()
-    {
+    public OpenWeatherService(){
 
     }
 
-    
     /**
      * Κληση του service για τις τρεχουσες καιρικες συνθηκες και για μια λιστα απο πολεις 
      * @param city : Λιστα απο αντικειμενα τυπου {@link org.eap.pli24.eweather.model.City}
      * @return		:Λιστα απο αντικειμενα τυπου {@link org.eap.pli24.eweather.model.WeatherActual}
      */
-    public List<WeatherActual> getActualWeatherData(List<City> city)
-    {
+    public List<WeatherActual> getActualWeatherData(List<City> city){
         ArrayList<WeatherActual> results = new ArrayList<>();
-        try
-        {
+        try{
             String cityIds = "";
-            for (City ct : city)
-            {
-                if (cityIds == "")
-                {
+            for (City ct : city){
+                if (cityIds == ""){
                     cityIds = ct.getId().toString();
-                } else
-                {
+                }else{
                     cityIds = cityIds + "," + ct.getId().toString();
                 }
-
             }
             String urlString = OPEN_WEATHER_MAP_URL + GROUP + "?" + "id=" + cityIds + "&units=" + UNIT + "&appid=" + APPLICATION_KEY;
             //put the cities here 
@@ -95,22 +75,18 @@ public class OpenWeatherService
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder jsonRaw = new StringBuilder(1024);
             String tmp = "";
-            while ((tmp = reader.readLine()) != null)
-            {
+            while ((tmp = reader.readLine()) != null){
                 jsonRaw.append(tmp).append("\n");
             }
             reader.close();
             JsonReader jsonData = Json.createReader(new StringReader(jsonRaw.toString()));
             JsonObject data = jsonData.readObject();
             int cnt = data.getJsonNumber("cnt").intValue();
-            if (cnt != city.size())
-            {
+            if (cnt != city.size()){
                 return null;
             }
             JsonArray cityData = data.getJsonArray("list");
-            for (int i = 0; i < cityData.size(); i++)
-            {
-
+            for (int i = 0; i < cityData.size(); i++){
                 JsonObject currentData = cityData.getJsonObject(i);
                 int id = currentData.getInt("id");
                 JsonObject main = currentData.getJsonObject("main");
@@ -120,15 +96,13 @@ public class OpenWeatherService
                 JsonNumber windSpeed = currentData.getJsonObject("wind").getJsonNumber("speed");
                 BigDecimal rainActual = BigDecimal.ZERO;
                 JsonObject rain = currentData.getJsonObject("rain");
-                if (rain != null)
-                {
+                if (rain != null){
                     JsonNumber rain3h = rain.getJsonNumber("3h");
                     rainActual = rain3h.bigDecimalValue();
                 }
                 BigDecimal snowActual = BigDecimal.ZERO;
                 JsonObject snow = currentData.getJsonObject("snow");
-                if (snow != null)
-                {
+                if (snow != null){
                     JsonNumber snow3h = snow.getJsonNumber("3h");
                     snowActual = snow3h.bigDecimalValue();
                 }
@@ -142,8 +116,7 @@ public class OpenWeatherService
                 weatherActual.setSnow(snowActual);
                 results.add(weatherActual);
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
         return results;
@@ -154,14 +127,10 @@ public class OpenWeatherService
      * @param city  :Λιστα απο αντικειμενα τυπου {@link org.eap.pli24.eweather.model.City}
      * @return:Λιστα απο αντικειμενα τυπου {@link org.eap.pli24.eweather.model.WeatherForecast}
      */
-    public List<WeatherForecast> getForecastWeatherData(List<City> city)
-    {
+    public List<WeatherForecast> getForecastWeatherData(List<City> city){
         ArrayList<WeatherForecast> results = new ArrayList<>();
-        try
-        {
-            for (City ct : city)
-            {
-
+        try{
+            for (City ct : city){
                 String urlString = OPEN_WEATHER_MAP_URL + FORECAST + "?" + "id=" + ct.getId() + "&units=" + UNIT + "&appid=" + APPLICATION_KEY;
                 //put the cities here 
                 URL url = new URL(urlString);
@@ -169,22 +138,19 @@ public class OpenWeatherService
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder jsonRaw = new StringBuilder(1024);
                 String tmp = "";
-                while ((tmp = reader.readLine()) != null)
-                {
+                while ((tmp = reader.readLine()) != null){
                     jsonRaw.append(tmp).append("\n");
                 }
                 reader.close();
                 JsonReader jsonData = Json.createReader(new StringReader(jsonRaw.toString()));
                 JsonObject data = jsonData.readObject();
                 String cod = data.getString("cod");
-                if (!"200".equals(cod))
-                {
+                if (!"200".equals(cod)){
                     continue;
                 }
                 JsonArray cityData = data.getJsonArray("list");
 
-                for (int i = 0; i < cityData.size(); i++)
-                {
+                for (int i = 0; i < cityData.size(); i++){
                     JsonObject currentData = cityData.getJsonObject(i);
                     JsonNumber timestamp = currentData.getJsonNumber("dt");
                     Date currentDate = new Date(timestamp.longValue()*1000);
@@ -198,9 +164,7 @@ public class OpenWeatherService
                     BigDecimal rainActual = BigDecimal.ZERO;
                     JsonObject rain = currentData.getJsonObject("rain");
 
-                    if (rain != null)
-                    {
-                      
+                    if (rain != null){
                         JsonNumber rain3h = rain.getJsonNumber("3h");
                         if (rain3h != null )
                             rainActual = rain3h.bigDecimalValue();
@@ -208,8 +172,7 @@ public class OpenWeatherService
 
                     BigDecimal snowActual = BigDecimal.ZERO;
                     JsonObject snow = currentData.getJsonObject("snow");
-                    if (snow != null)
-                    {
+                    if (snow != null){
                         JsonNumber snow3h = snow.getJsonNumber("3h");
                         snowActual = snow3h.bigDecimalValue();
                     }
@@ -221,16 +184,10 @@ public class OpenWeatherService
                     weatherForecast.setWindSpeed(windSpeed.bigDecimalValue());
                     weatherForecast.setRain(rainActual);
                     weatherForecast.setSnow(snowActual);
-                    results.add(weatherForecast);
-                    
-                    
+                    results.add(weatherForecast); 
                 }
-
             }
-
-        } 
-        catch (Exception e)
-        {
+        }catch (Exception e){
 
         }
         return results;

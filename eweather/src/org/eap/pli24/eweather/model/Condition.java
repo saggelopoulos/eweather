@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Αναστασίου Αναστάσιος
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
- *
  */
 @Entity
 @Table(name = "CONDITION")
@@ -107,5 +106,4 @@ public class Condition implements Serializable {
     public String toString() {
         return getDescription();
     }
-    
 }

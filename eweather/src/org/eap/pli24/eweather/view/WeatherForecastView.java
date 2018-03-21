@@ -12,22 +12,22 @@ import org.eap.pli24.eweather.model.City;
 import org.eap.pli24.eweather.model.WeatherForecast;
 import org.eclipse.persistence.internal.helper.Helper;
 
-
 /**
  * @author Αγγελόπουλος Σπυρίδων
  * @author Αναστασίου Αναστάσιος
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
  */
+
 public class WeatherForecastView extends javax.swing.JPanel {
     private List<City> cities;
     private Eweather eweather;    
     private SimpleDateFormat dateFormat;
+    
      /**
      * Creates new form ForecastWeather
      */
-    public WeatherForecastView(Eweather eweather) {
-        
+    public WeatherForecastView(Eweather eweather) {        
         this.eweather = eweather;
         dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         initComponents();
@@ -38,13 +38,11 @@ public class WeatherForecastView extends javax.swing.JPanel {
     /**
      * Εμφανιση των ονομάτων Πολεων 
      */
-    private void showCity()
-    {
+    private void showCity(){
         cities=  eweather.getController().getCityList();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         model.addElement("Επιλογή");
-        for (City ct : cities)
-        {
+        for (City ct : cities){
             model.addElement(ct.getName());
         }
         CityListUI.setModel(model); 
@@ -54,63 +52,48 @@ public class WeatherForecastView extends javax.swing.JPanel {
      * Ρυθμιση του τροπου εμφανισης του πινακα (columns and rows)
      * @param mode 
      */
-    private void setJtable(int mode)
-    {
-         DefaultTableModel model; 
-         int numRows=0;
-         if (mode==0)
-         {
-             numRows = 8;
-         }
-         else
-         {
-             numRows = 5;
-         }
-         String col[] = {"Ημερομηνία","Καιρός","Θερμοκρασία","Σύνεφα" ,"Άνεμος", "Βροχή", "Χιόνι" }; 
-             String rows[][] = new String[numRows][7];
-             for (int i = 0 ; i<numRows-1; i++)
-             {
-                 for (int j =0 ; j<7 ; j++)
-                 {
-                     rows[i][j] ="";
-                 } 
-             }
-             
-             
-             
-           model = new DefaultTableModel(rows, col);              
-          jTable1.setModel(model);
-          
-     }        
+    private void setJtable(int mode) {
+        DefaultTableModel model; 
+        int numRows=0;
+        if (mode==0) {
+           numRows = 8;
+        } else {
+           numRows = 5;
+        }
+        String col[] = {"Ημερομηνία","Καιρός","Θερμοκρασία","Σύνεφα" ,"Άνεμος", "Βροχή", "Χιόνι" }; 
+        String rows[][] = new String[numRows][7];
+        for (int i = 0 ; i<numRows-1; i++){
+            for (int j =0 ; j<7 ; j++){
+                rows[i][j] ="";
+            } 
+        }
+        model = new DefaultTableModel(rows, col);              
+        jTable1.setModel(model); 
+    }        
      
     /**
      * Εμφανιση αποτελεσματων για τις επομενες 24 ωρες και για 
      * συγκεκριμενη πολη. 
      */
-    private void ShowNext24Hours()
-     {
-        if ("Επιλογή" == CityListUI.getSelectedItem())
-        {
+    private void ShowNext24Hours(){
+        if ("Επιλογή" == CityListUI.getSelectedItem()){
             eweather.showdialog("Παρακαλω Επιλέξτε Πόλη!", "Προσοχή");
             return ;
         }
         
         City currentCity ; 
-        for ( City ct :cities)
-        {
-            if  (ct.getName() == CityListUI.getSelectedItem())
-            {
+        for ( City ct :cities){
+            if  (ct.getName() == CityListUI.getSelectedItem()){
                 currentCity = ct;
                 Date begindate = new Date();
                 Date endDate = new Date( begindate.getTime() + (24*60*60*1000));
                 System.out.println(begindate);
-                  System.out.println(endDate);       
+                System.out.println(endDate);       
                 
                 List<WeatherForecast> results = eweather.getController().getWeatherForecastByDate(begindate, endDate, currentCity);
                 int i =0;
                 
-                for ( WeatherForecast wf  : results)
-                {
+                for ( WeatherForecast wf  : results){
                      jTable1.getModel().setValueAt(  dateFormat.format(wf.getWeatherForecastPK().getDatetime()) , i, 0);
                      jTable1.getModel().setValueAt(wf.getConditionId() , i, 1);
                      jTable1.getModel().setValueAt(wf.getTemprature() , i, 2);
@@ -128,10 +111,8 @@ public class WeatherForecastView extends javax.swing.JPanel {
      * Εμφανιση αποτελεσματων για τις επομενες 5 ημερες  
      * και για συγκεκριμενη πολη. 
      */
-     public void showNext5Days()
-     {
-        if ("Επιλογή" == CityListUI.getSelectedItem())
-        {
+     public void showNext5Days(){
+        if ("Επιλογή" == CityListUI.getSelectedItem()){
             eweather.showdialog("Παρακαλω Επιλέξτε Πόλη!", "Προσοχή");
             return ;
         }
@@ -142,77 +123,54 @@ public class WeatherForecastView extends javax.swing.JPanel {
         int currentHours = calendar.get(Calendar.HOUR_OF_DAY);
         int hours=0;
         
-        switch (currentHours)
-        {
+        switch (currentHours){
             case 23:
             case 0:
-            case 1:
-                
-            {
-                
+            case 1:                          
                 hours =2;
                 break;
-            }
             case 2:
             case 3:   
             case 4:
-            {
                 hours =5;
                 break;
-            }
             case 5:
             case 6:    
-            case 7: 
-            {
+            case 7:
                 hours =8;
                 break;
-            
-            }
             case 8:
             case 9:    
-            case 10: 
-            {
+            case 10:
                 hours =11;
                 break;
-            
-            }
             case 11:
             case 12:    
-            case 13: 
-            {
+            case 13:
                 hours =14;
                 break;
-            }
             case 14:
             case 15:    
-            case 16: 
-            {
+            case 16:
                 hours =17;
                 break;
-            }
             case 17:
             case 18:    
-            case 19: 
-            {
+            case 19:
                 hours =20;
                 break;
-            }
             case 20:
             case 21:    
-            case 22: 
-            {
+            case 22:
                 hours =23;
                 break;
-            }
-            
         }
         calendar.set(Calendar.HOUR_OF_DAY, hours);
         calendar.set(Calendar.MINUTE,0);
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
         dates.add(calendar.getTime());
-        for (int i =1 ; i< 5 ;i++)
-        {
+        for (int i =1 ; i< 5 ;i++){
             Date dt = new Date();
             calendar.setTime(dt);
             calendar.set(Calendar.DATE, calendar.get(Calendar.DATE)+ i);
@@ -221,22 +179,17 @@ public class WeatherForecastView extends javax.swing.JPanel {
             calendar.set(Calendar.SECOND,0);
             calendar.set(Calendar.MILLISECOND,0);
             
-            dates.add(calendar.getTime());   
-            
-            
+            dates.add(calendar.getTime());
         }
         
         City currentCity ; 
-        for ( City ct :cities)
-        {
-            if  (ct.getName() == CityListUI.getSelectedItem())
-            {
+        for ( City ct :cities){
+            if  (ct.getName() == CityListUI.getSelectedItem()){
                  currentCity = ct;
                  List<WeatherForecast> results = eweather.getController().getWeatherForecastByDateList(dates, currentCity);
                  
                 int i=0; 
-                for ( WeatherForecast wf  : results)
-                {
+                for ( WeatherForecast wf  : results){
                      jTable1.getModel().setValueAt(  dateFormat.format(wf.getWeatherForecastPK().getDatetime()) , i, 0);
                      jTable1.getModel().setValueAt(wf.getConditionId() , i, 1);
                      jTable1.getModel().setValueAt(wf.getTemprature() , i, 2);
@@ -245,16 +198,10 @@ public class WeatherForecastView extends javax.swing.JPanel {
                      jTable1.getModel().setValueAt(wf.getRain().toPlainString() , i, 5);
                      jTable1.getModel().setValueAt(wf.getSnow().toPlainString(), i, 6);
                      i++;
-                }
-                 
-                         
-                         
-                         
+                }        
             }
-        
         }
-        
-     }
+    }
        
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
@@ -379,8 +326,8 @@ public class WeatherForecastView extends javax.swing.JPanel {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         setJtable(0);
         ShowNext24Hours();
-  
     }//GEN-LAST:event_jButton2MouseClicked
+    
     /*
     * Five days
     */
@@ -390,12 +337,10 @@ public class WeatherForecastView extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
         setJtable(0);
         eweather.getController().updateForecastData();
         ShowNext24Hours();
     }//GEN-LAST:event_jButton4MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CityListUI;

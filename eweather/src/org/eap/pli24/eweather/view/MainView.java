@@ -3,24 +3,21 @@ package org.eap.pli24.eweather.view;
 import javax.swing.JPanel;
 import org.eap.pli24.eweather.Eweather;
 
-
 /**
  * @author Αγγελόπουλος Σπυρίδων
  * @author Αναστασίου Αναστάσιος
  * @author Αυγερινός Παναγιώτης
  * @author Γκίκας Μιχαήλ
  */
+
 public class MainView extends javax.swing.JPanel 
 {
-
-    
-    
     private Eweather eweather;
+    
     /**
      * Creates new form Main
      */
-    public MainView(Eweather eweather) 
-    {
+    public MainView(Eweather eweather){
         this.eweather = eweather;
         initComponents();
     }
@@ -100,9 +97,7 @@ public class MainView extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
         eweather.switchboard(1);
-   
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -116,7 +111,6 @@ public class MainView extends javax.swing.JPanel
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         eweather.switchboard(4);
     }//GEN-LAST:event_jButton3MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
