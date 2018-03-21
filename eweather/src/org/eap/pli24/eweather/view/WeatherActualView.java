@@ -3,10 +3,7 @@ package org.eap.pli24.eweather.view;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.DefaultListSelectionModel;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.TableModel;
+import javax.swing.table.TableColumn;
 import org.eap.pli24.eweather.Eweather;
 import org.eap.pli24.eweather.model.City;
 import org.eap.pli24.eweather.model.WeatherActual;
@@ -29,6 +26,8 @@ public class WeatherActualView extends javax.swing.JPanel {
     public WeatherActualView(Eweather eweather){
         this.eweather = eweather;
         initComponents();
+        TableColumn tc = weatherTableUI.getColumnModel().getColumn(1);
+        tc.setCellRenderer(new ImageRenderer());
         showCity();
     }
     
@@ -63,24 +62,27 @@ public class WeatherActualView extends javax.swing.JPanel {
         }
     
         List<WeatherActual> weatherActualsList =eweather.getController().getWeatherActualByCity(selectCityID);
-       
+        
         int inx=0 ;
         for( i=0 ; i<5 ; i++){
             weatherTableUI.getModel().setValueAt("", i, 0);
-            weatherTableUI.getModel().setValueAt("", i, 1);
+            weatherTableUI.getModel().setValueAt(null, i, 1);
             weatherTableUI.getModel().setValueAt("", i, 2);
             weatherTableUI.getModel().setValueAt("", i, 3);
             weatherTableUI.getModel().setValueAt("", i, 4);
+            weatherTableUI.getModel().setValueAt("", i, 5);
         }
       
-        for (WeatherActual wa : weatherActualsList){              
+        for (WeatherActual wa : weatherActualsList)
+        {              
             weatherTableUI.getModel().setValueAt(wa.getCity().getName(), inx, 0);
-            weatherTableUI.getModel().setValueAt(wa.getConditionId(), inx, 1);
-            weatherTableUI.getModel().setValueAt(wa.getTemprature(), inx, 2);
-            weatherTableUI.getModel().setValueAt(wa.getWindSpeed(), inx, 3);    
-            weatherTableUI.getModel().setValueAt(wa.getClounds(), inx, 4);    
+            weatherTableUI.getModel().setValueAt(wa.getIcon(), inx, 1);
+            weatherTableUI.getModel().setValueAt(wa.getConditionId(), inx, 2);
+            weatherTableUI.getModel().setValueAt(wa.getTemprature(), inx, 3);
+            weatherTableUI.getModel().setValueAt(wa.getWindSpeed(), inx, 4);    
+            weatherTableUI.getModel().setValueAt(wa.getClounds(), inx, 5);    
             inx++;
-        }
+        }   
     }
     
     /**
@@ -88,7 +90,8 @@ public class WeatherActualView extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -99,34 +102,43 @@ public class WeatherActualView extends javax.swing.JPanel {
         weatherTableUI = new javax.swing.JTable();
 
         jButton1.setText("Ο Καιρός Τώρα");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jButton1MouseClicked(evt);
             }
         });
 
         jButton2.setText("Ανανέωση");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jButton2MouseClicked(evt);
             }
         });
 
         jButton3.setText("Επιστροφή");
         jButton3.setToolTipText("");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jButton3MouseClicked(evt);
             }
         });
 
-        cityListUI.setModel(new javax.swing.AbstractListModel<String>() {
+        cityListUI.setModel(new javax.swing.AbstractListModel<String>()
+        {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        cityListUI.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        cityListUI.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 cityListUIValueChanged(evt);
             }
         });
@@ -134,22 +146,27 @@ public class WeatherActualView extends javax.swing.JPanel {
 
         weatherTableUI.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         weatherTableUI.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+            new Object [][]
+            {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
-            new String [] {
-                "Πόλη", "Καιρός", "Θερμοκρασία", "Ανεμος", "Σύνεφα"
+            new String []
+            {
+                "Πόλη", "Icon", "Καιρός", "Θερμοκρασία", "Ανεμος", "Σύνεφα"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
         });
