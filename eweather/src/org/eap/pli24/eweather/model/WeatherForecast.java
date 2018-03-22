@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -39,6 +40,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "WeatherForecast.findMinMax", query = "SELECT w.city, MAX(w.temprature), MIN(w.temprature) FROM WeatherForecast w GROUP BY w.city" )
 })
 public class WeatherForecast implements Serializable {
+
+    @Size(max = 200)
+    @Column(name = "ICON")
+    private String icon;
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -159,5 +164,15 @@ public class WeatherForecast implements Serializable {
     @Override
     public String toString() {
         return "org.eap.pli24.eweather.model.WeatherForecast[ weatherForecastPK=" + weatherForecastPK + " ]";
+    }
+
+    public String getIcon()
+    {
+        return icon;
+    }
+
+    public void setIcon(String icon)
+    {
+        this.icon = icon;
     }
 }
