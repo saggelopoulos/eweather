@@ -1,7 +1,7 @@
-Thu Mar 22 16:48:03 EET 2018 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+Thu Mar 22 17:06:56 EET 2018 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu Mar 22 16:48:04 EET 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0162-4e2e-5b80-00006ee34068 
+Thu Mar 22 17:06:56 EET 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0162-4e3f-a39c-00006ee34068 
 on database directory C:\eap\database\eweather_db with class loader sun.misc.Launcher$AppClassLoader@6f94fa3e 
 Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_131/db/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -13,8 +13,8 @@ os.version=10.0
 derby.system.home=C:\eap\database
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Thu Mar 22 16:51:53 EET 2018: Shutting down Derby engine
+Thu Mar 22 17:08:02 EET 2018: Shutting down Derby engine
 ----------------------------------------------------------------
-Thu Mar 22 16:51:53 EET 2018:
-Shutting down instance a816c00e-0162-4e2e-5b80-00006ee34068 on database directory C:\eap\database\eweather_db with class loader sun.misc.Launcher$AppClassLoader@6f94fa3e 
+Thu Mar 22 17:08:02 EET 2018:
+Shutting down instance a816c00e-0162-4e3f-a39c-00006ee34068 on database directory C:\eap\database\eweather_db with class loader sun.misc.Launcher$AppClassLoader@6f94fa3e 
 ----------------------------------------------------------------
