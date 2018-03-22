@@ -43,16 +43,16 @@ public class Controller{
      * Ενημέρωση της βάσης δεδομένων με τις τρέχουσες καιρικές συνθήκες  
      */
     public void updateActualData(){
-    	 List<WeatherActual> lt= openWeatherService.getActualWeatherData(getCityList());
-         deleteWeatherActualAll();
-         insertWeatherActual(lt);
+    	List<WeatherActual> lt= openWeatherService.getActualWeatherData(getCityList());
+        deleteWeatherActualAll();
+        insertWeatherActual(lt);
     }
     
     /**
      * Ενημέρωση της βάσης δεδομένων με τις προβλέψεις για 5 ήμερες 
      */
     public void updateForecastData(){
-    	List<WeatherForecast> weatherForecasts = openWeatherService.getForecastWeatherData(getCityList());
+        List<WeatherForecast> weatherForecasts = openWeatherService.getForecastWeatherData(getCityList());
         insertWeatherForecast(weatherForecasts);  
     }
         
@@ -96,7 +96,7 @@ public class Controller{
      */
     public List<WeatherActual> getWeatherActualAll(){
         Query qWa = entityManager.createNamedQuery("WeatherActual.findAll");
-         List result = qWa.getResultList(); 
+        List result = qWa.getResultList(); 
         return result;
     }
     
@@ -154,9 +154,7 @@ public class Controller{
                 Object rsl = qw.getSingleResult();
                 if (rsl == null){
                     entityManager.persist(wf);    
-                }
-                else
-                {
+                }else{
                     entityManager.merge(wf);
                 }
             }catch (Exception e){
