@@ -24,6 +24,7 @@ create table Weather_Actual
     Wind_Speed  decimal(28,2),
     Rain decimal(28,2),
     Snow decimal(28,2),
+    Icon varchar(200),
     Primary key (City_ID)
 );
 
@@ -38,6 +39,7 @@ create table Weather_Forecast
     Wind_Speed  decimal(28,2),
     Rain decimal(28,2),
     Snow decimal(28,2),
+    Icon varchar(200),
     Primary key (DateTime, City_ID)
 
 
