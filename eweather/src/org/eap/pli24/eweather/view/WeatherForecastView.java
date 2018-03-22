@@ -177,10 +177,19 @@ public class WeatherForecastView extends javax.swing.JPanel {
             Date dt = new Date();
             calendar.setTime(dt);
             calendar.set(Calendar.DATE, calendar.get(Calendar.DATE)+ i);
-            calendar.set(Calendar.HOUR_OF_DAY, 11);
+            if (calendar.getTimeZone().inDaylightTime(calendar.getTime()))
+            {
+                calendar.set(Calendar.HOUR_OF_DAY, 12);
+            }
+            else
+            {
+                calendar.set(Calendar.HOUR_OF_DAY, 11);
+            }
+            
             calendar.set(Calendar.MINUTE,0);
             calendar.set(Calendar.SECOND,0);
             calendar.set(Calendar.MILLISECOND,0);
+            
             dates.add(calendar.getTime());
         }
         

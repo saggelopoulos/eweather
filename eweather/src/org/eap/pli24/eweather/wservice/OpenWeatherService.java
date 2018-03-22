@@ -161,6 +161,9 @@ public class OpenWeatherService{
                     JsonObject currentData = cityData.getJsonObject(i);
                     JsonNumber timestamp = currentData.getJsonNumber("dt");
                     Date currentDate = new Date(timestamp.longValue()*1000);
+                   // currentDate.setTime(currentDate.getTime()+ (currentDate.getTimezoneOffset()*60*1000));
+                   // System.out.println(timestamp.intValue() +"|" + currentDate.getTimezoneOffset() +"|" +currentDate.toString());
+                    
                     JsonObject main = currentData.getJsonObject("main");
                     JsonNumber temprature = main.getJsonNumber("temp");
 
