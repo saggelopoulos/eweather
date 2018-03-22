@@ -78,8 +78,8 @@ public class WeatherActualView extends javax.swing.JPanel {
             weatherTableUI.getModel().setValueAt(wa.getIcon(), inx, 1);
             weatherTableUI.getModel().setValueAt(wa.getConditionId(), inx, 2);
             weatherTableUI.getModel().setValueAt(wa.getTemprature().intValue() + " °C", inx, 3);
-            weatherTableUI.getModel().setValueAt(wa.getWindSpeed() + " km/h", inx, 4);    
-            weatherTableUI.getModel().setValueAt(wa.getClounds(), inx, 5);    
+            weatherTableUI.getModel().setValueAt(wa.getWindSpeed().floatValue() + " m/s", inx, 4);    
+            weatherTableUI.getModel().setValueAt(wa.getClounds().intValue() + " %", inx, 5);    
             inx++;
         }   
     }

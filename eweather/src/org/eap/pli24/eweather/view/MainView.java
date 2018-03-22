@@ -10,8 +10,7 @@ import org.eap.pli24.eweather.Eweather;
  * @author Γκίκας Μιχαήλ
  */
 
-public class MainView extends javax.swing.JPanel 
-{
+public class MainView extends javax.swing.JPanel{
     private Eweather eweather;
     
     /**

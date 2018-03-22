@@ -100,15 +100,15 @@ public class WeatherForecastView extends javax.swing.JPanel {
                     jTable1.getModel().setValueAt(wf.getIcon(), i, 1);
                     jTable1.getModel().setValueAt(wf.getConditionId() , i, 2);
                     jTable1.getModel().setValueAt(wf.getTemprature().intValue() + " °C" , i, 3);
-                    jTable1.getModel().setValueAt(wf.getClounds().toPlainString(), i, 4);
-                    jTable1.getModel().setValueAt(wf.getWindSpeed().toPlainString() + " km/h" , i, 5);
-                    jTable1.getModel().setValueAt(wf.getRain().toPlainString() , i, 6);
-                    jTable1.getModel().setValueAt(wf.getSnow().toPlainString(), i, 7);
+                    jTable1.getModel().setValueAt(wf.getClounds().intValue() + " %", i, 4);
+                    jTable1.getModel().setValueAt(wf.getWindSpeed().floatValue() + " m/s" , i, 5);
+                    jTable1.getModel().setValueAt(wf.getRain().intValue() + " %" , i, 6);
+                    jTable1.getModel().setValueAt(wf.getSnow().intValue() + " %", i, 7);
                     i++;
                 }
             }
         }
-     }
+    }
     
     /**
      * Εμφανιση αποτελεσματων για τις επομενες 5 ημερες  
@@ -177,12 +177,9 @@ public class WeatherForecastView extends javax.swing.JPanel {
             Date dt = new Date();
             calendar.setTime(dt);
             calendar.set(Calendar.DATE, calendar.get(Calendar.DATE)+ i);
-            if (calendar.getTimeZone().inDaylightTime(calendar.getTime()))
-            {
+            if (calendar.getTimeZone().inDaylightTime(calendar.getTime())){
                 calendar.set(Calendar.HOUR_OF_DAY, 12);
-            }
-            else
-            {
+            }else{
                 calendar.set(Calendar.HOUR_OF_DAY, 11);
             }
             
@@ -205,10 +202,10 @@ public class WeatherForecastView extends javax.swing.JPanel {
                     jTable1.getModel().setValueAt(wf.getIcon(), i, 1);
                     jTable1.getModel().setValueAt(wf.getConditionId() , i, 2);
                     jTable1.getModel().setValueAt(wf.getTemprature().intValue() + " °C" , i, 3);
-                    jTable1.getModel().setValueAt(wf.getClounds().toPlainString(), i, 4);
-                    jTable1.getModel().setValueAt(wf.getWindSpeed().toPlainString() + " km/h", i, 5);
-                    jTable1.getModel().setValueAt(wf.getRain().toPlainString() , i, 6);
-                    jTable1.getModel().setValueAt(wf.getSnow().toPlainString(), i, 7);
+                    jTable1.getModel().setValueAt(wf.getClounds().intValue() + " %", i, 4);
+                    jTable1.getModel().setValueAt(wf.getWindSpeed().floatValue() + " m/s", i, 5);
+                    jTable1.getModel().setValueAt(wf.getRain().intValue() + " %", i, 6);
+                    jTable1.getModel().setValueAt(wf.getSnow().intValue() + " %", i, 7);
                     i++;
                 }        
             }

@@ -1,6 +1,5 @@
 package org.eap.pli24.eweather;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
