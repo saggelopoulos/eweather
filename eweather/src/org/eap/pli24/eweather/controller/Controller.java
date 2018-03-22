@@ -201,9 +201,9 @@ public class Controller{
     }
     
     public List<WeatherForecast> getMinMaxTemprature(){
-         Query qWa = entityManager.createNamedQuery("WeatherForecast.findMinMax");
-         List <WeatherForecast> result = qWa.getResultList(); 
-         return result;
+        Query qWa = entityManager.createNamedQuery("WeatherForecast.findMinMax");
+        List <WeatherForecast> result = qWa.getResultList(); 
+        return result;
     }
     
     /**
