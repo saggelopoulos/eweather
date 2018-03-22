@@ -76,8 +76,8 @@ public class WeatherStatisticsView extends javax.swing.JPanel {
                 int i=0;
                 for ( WeatherForecastStatistics ws : wsl){
                     jTable1.getModel().setValueAt(ws.getName() , i,0);
-                    jTable1.getModel().setValueAt( ws.getTempratureMin() , i, 1);
-                    jTable1.getModel().setValueAt( ws.getTempratureMax(), i, 2);
+                    jTable1.getModel().setValueAt( ws.getTempratureMin().intValue() + " °C" , i, 1);
+                    jTable1.getModel().setValueAt( ws.getTempratureMax().intValue() + " °C", i, 2);
                     i++;
                 }
             }
@@ -92,9 +92,9 @@ public class WeatherStatisticsView extends javax.swing.JPanel {
         int i=0;
         for ( WeatherForecastStatistics ws : wsl){
             jTable1.getModel().setValueAt(ws.getName() , i,0);
-            jTable1.getModel().setValueAt( ws.getTempratureMin() , i, 1);
-            jTable1.getModel().setValueAt( ws.getTempratureMax(), i, 2);
-            jTable1.getModel().setValueAt( ws.getTempratureAvg(), i, 3);
+            jTable1.getModel().setValueAt( ws.getTempratureMin().intValue() + " °C" , i, 1);
+            jTable1.getModel().setValueAt( ws.getTempratureMax().intValue() + " °C", i, 2);
+            jTable1.getModel().setValueAt( ws.getTempratureAvg().intValue() + " °C", i, 3);
             i++;
         }
     }

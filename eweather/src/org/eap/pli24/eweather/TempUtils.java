@@ -9,24 +9,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-public class TempUtils 
-{
+public class TempUtils{
 
-    public String getWeatherForCities
-        (
-            String baseUrl, 
-            String apiKey,
-            List<String> cityIds)
-            throws MalformedURLException, IOException {
+    public String getWeatherForCities(
+        String baseUrl, 
+        String apiKey,
+        List<String> cityIds)
+        throws MalformedURLException, IOException {
         StringBuilder sb = new StringBuilder();
 
         String urlStr= baseUrl + "?id=";
         int count = cityIds.size();
-        for (int i = 0; i < count; i++) 
-        {
+        for (int i = 0; i < count; i++){
             urlStr += cityIds.get(i);
-            if (i < count - 1) 
-            {
+            if (i < count - 1){
                 urlStr += ",";
             }
         }

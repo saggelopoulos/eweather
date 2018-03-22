@@ -99,9 +99,9 @@ public class WeatherForecastView extends javax.swing.JPanel {
                     jTable1.getModel().setValueAt(  dateFormat.format(wf.getWeatherForecastPK().getDatetime()) , i, 0);
                     jTable1.getModel().setValueAt(wf.getIcon(), i, 1);
                     jTable1.getModel().setValueAt(wf.getConditionId() , i, 2);
-                    jTable1.getModel().setValueAt(wf.getTemprature() , i, 3);
+                    jTable1.getModel().setValueAt(wf.getTemprature().intValue() + " °C" , i, 3);
                     jTable1.getModel().setValueAt(wf.getClounds().toPlainString(), i, 4);
-                    jTable1.getModel().setValueAt(wf.getWindSpeed().toPlainString() , i, 5);
+                    jTable1.getModel().setValueAt(wf.getWindSpeed().toPlainString() + " km/h" , i, 5);
                     jTable1.getModel().setValueAt(wf.getRain().toPlainString() , i, 6);
                     jTable1.getModel().setValueAt(wf.getSnow().toPlainString(), i, 7);
                     i++;
