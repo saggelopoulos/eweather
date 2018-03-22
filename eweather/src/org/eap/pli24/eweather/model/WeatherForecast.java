@@ -166,13 +166,11 @@ public class WeatherForecast implements Serializable {
         return "org.eap.pli24.eweather.model.WeatherForecast[ weatherForecastPK=" + weatherForecastPK + " ]";
     }
 
-    public String getIcon()
-    {
+    public String getIcon(){
         return icon;
     }
 
-    public void setIcon(String icon)
-    {
+    public void setIcon(String icon){
         this.icon = icon;
     }
 }

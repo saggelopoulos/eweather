@@ -189,13 +189,11 @@ public class WeatherActual implements Serializable {
         changeSupport.removePropertyChangeListener(listener);
     }
 
-    public String getIcon()
-    {
+    public String getIcon(){
         return icon;
     }
 
-    public void setIcon(String icon)
-    {
+    public void setIcon(String icon){
         this.icon = icon;
     }
 }

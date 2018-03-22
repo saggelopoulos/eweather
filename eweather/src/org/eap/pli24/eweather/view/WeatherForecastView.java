@@ -167,7 +167,7 @@ public class WeatherForecastView extends javax.swing.JPanel {
             case 22:
                 hours =23;
                 break;
-        }
+        }       
         calendar.set(Calendar.HOUR_OF_DAY, hours);
         calendar.set(Calendar.MINUTE,0);
         calendar.set(Calendar.SECOND,0);
