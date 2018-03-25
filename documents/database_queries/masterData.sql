@@ -7,8 +7,6 @@ INSERT into CITY (ID ,NAME) values (8133786 , 'Λάρισα');
 INSERT into CITY (ID ,NAME) values (261745 , 'Ηράκλειο');
 
 --Contitions
-
-
 INSERT into CONDITION (ID, DESCRIPTION)  values (200,'thunderstorm with light rain');
 INSERT into CONDITION (ID, DESCRIPTION)  values (201,'thunderstorm with rain');
 INSERT into CONDITION (ID, DESCRIPTION)  values (202,'thunderstorm with heavy rain');
@@ -82,5 +80,4 @@ INSERT into CONDITION (ID, DESCRIPTION)  values (959,'severe gale');
 INSERT into CONDITION (ID, DESCRIPTION)  values (960,'storm');
 INSERT into CONDITION (ID, DESCRIPTION)  values (961,'violent storm');
 INSERT into CONDITION (ID, DESCRIPTION)  values (962,'hurricane');
-
 
