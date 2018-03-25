@@ -1,20 +1,16 @@
-Fri Mar 23 10:21:04 EET 2018 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+Sat Mar 24 10:47:34 EET 2018 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Fri Mar 23 10:21:05 EET 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0162-51f2-6c00-00006ee34068 
-on database directory C:\eap\database\eweather_db with class loader sun.misc.Launcher$AppClassLoader@6f94fa3e 
-Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_131/db/lib/derby.jar
+Sat Mar 24 10:47:35 EET 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0162-5731-09c8-00006ee34068 
+on database directory C:\eap\database\eweather_db with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_91/db/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_131-b11
-user.dir=C:\Program Files\Java\jdk1.8.0_131\db
+java.runtime.version=1.8.0_91-b15
+user.dir=C:\Program Files\Java\jdk1.8.0_91\db
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
 derby.system.home=C:\eap\database
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Fri Mar 23 12:27:09 EET 2018: Shutting down Derby engine
-----------------------------------------------------------------
-Fri Mar 23 12:27:09 EET 2018:
-Shutting down instance a816c00e-0162-51f2-6c00-00006ee34068 on database directory C:\eap\database\eweather_db with class loader sun.misc.Launcher$AppClassLoader@6f94fa3e 
-----------------------------------------------------------------
+Sat Mar 24 19:31:07 EET 2018: Shutting down Derby engine
