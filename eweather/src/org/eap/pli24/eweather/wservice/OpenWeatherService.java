@@ -32,7 +32,7 @@ public class OpenWeatherService{
     /**
      *  Το API_KEY  
      */
-    private static final String APPLICATION_KEY = "8cddfad4933646de13adebd70d2651a8";
+    private static final String APPLICATION_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
     /**
      * Το service url 
